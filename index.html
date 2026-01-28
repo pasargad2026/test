@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بیمه عمر مبتنی بر طلا | پاسارگاد</title>
+<title>بيمه طلایی | پاسارگاد</title>
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn-font@v33/Vazirmatn-font-face.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -71,8 +71,8 @@ footer {background:#000; padding:20px; text-align:center; font-size:0.9rem; colo
 <body>
 
 <header class="hero">
-  <h1>بیمه عمر مبتنی بر طلا</h1>
-  <p>سرمایه‌گذاری مطمئن، آینده‌ای درخشان</p>
+  <h1>بيمه عمر مبتني بر طلا</h1>
+  <p>سرمايه‌گذاري مطمئن، آينده‌اي درخشان</p>
   <a href="#" class="cta-btn">مشاوره و ثبت‌نام</a>
 
   <!-- Gold bars animation -->
@@ -84,33 +84,33 @@ footer {background:#000; padding:20px; text-align:center; font-size:0.9rem; colo
 </header>
 
 <section class="info">
-  <h2>چرا بیمه عمر مبتنی بر طلا؟</h2>
+  <h2>چرا بيمه عمر مبتني بر طلا؟</h2>
   <div class="cards">
     <div class="card">
-      <h3>🪙 پشتوانه طلا</h3>
-      <p>حفظ ارزش سرمایه در برابر تورم با مبنای طلا</p>
+      <h3>?? پشتوانه طلا</h3>
+      <p>حفظ ارزش سرمايه در برابر تورم با مبناي طلا</p>
     </div>
     <div class="card">
-      <h3>📈 سود مشارکت</h3>
-      <p>سهم شما از سود سرمایه‌گذاری‌های بزرگ</p>
+      <h3>?? سود مشارکت</h3>
+      <p>سهم شما از سود سرمايه‌گذاري‌هاي بزرگ</p>
     </div>
     <div class="card">
-      <h3>🛡️ امنیت آینده</h3>
-      <p>آرامش خاطر برای شما و خانواده‌تان</p>
+      <h3>??? امنيت آينده</h3>
+      <p>آرامش خاطر براي شما و خانواده‌تان</p>
     </div>
     <div class="card">
-      <h3>💳 وام بدون ضامن</h3>
-      <p>امکان دریافت وام آسان بدون نیاز به ضامن</p>
+      <h3>?? وام بدون ضامن</h3>
+      <p>امکان دريافت وام آسان بدون نياز به ضامن</p>
     </div>
     <div class="card">
-      <h3>📋 ۱۲ پوشش تکمیلی</h3>
-      <p>شامل پوشش‌های SOS و خدمات تکمیلی متنوع</p>
+      <h3>?? ?? بهره مندی از 12 پوشش</h3>
+      <p>sos تکمیلی و...</p>
     </div>
   </div>
 </section>
 
 <section class="counter-section">
-  <h2>فروش این طرح تا به الان</h2>
+  <h2>فروش اين طرح تا به الان</h2>
   <div class="counter" id="sales-counter">0</div>
 </section>
 
@@ -120,22 +120,22 @@ footer {background:#000; padding:20px; text-align:center; font-size:0.9rem; colo
 </section>
 
 <section class="news-section">
-  <h2>📰 اخبار روزانه</h2>
+  <h2>?? اخبار روزانه</h2>
   <ul id="rss-news"></ul>
 </section>
 
 <footer>
-  <p>© 2026 - بیمه عمر پاسارگاد | طراحی با تم طلایی</p>
+  <p> 2026 - بيمه عمر پاسارگاد </p>
 </footer>
 
 <script>
 // ----- Counter for sales -----
 let sales = 0;
-const targetSales = 800000000000; // 800 میلیارد
+const targetSales = +800000000000; // 800 ميليارد
 const counterElem = document.getElementById('sales-counter');
 function updateSales() {
   if(sales < targetSales){
-    sales += Math.floor(targetSales/200); // افزایش تدریجی
+    sales += Math.floor(targetSales/200); // افزايش تدريجي
     if(sales > targetSales) sales = targetSales;
     counterElem.innerText = sales.toLocaleString() + " تومان";
     requestAnimationFrame(updateSales);
@@ -150,7 +150,7 @@ new Chart(ctx, {
     data: {
         labels: ['1402','1404'],
         datasets: [{
-            label:'سود مشارکت در منافع (میلیارد تومان)',
+            label:'سود مشارکت در منافع (ميليارد تومان)',
             data:[1200,2000],
             borderColor:'gold',
             backgroundColor:'rgba(255,215,0,0.2)',
@@ -181,8 +181,9 @@ fetch(RSS_URL)
       ul.appendChild(li);
     });
   })
-  .catch(err => console.error("خطا در بارگذاری RSS:", err));
+  .catch(err => console.error("خطا در بارگذاري RSS:", err));
 </script>
 
 </body>
 </html>
+
