@@ -3,207 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بيمه عمر مبتنی بر طلا | شرکت بیمه پاسارگاد</title>
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn-font@v33/Vazirmatn-font-face.css" rel="stylesheet">
+    <title>بيمه عمر مبتنی بر طلا | بیمه پاسارگاد</title>
+    <!-- فونت‌های زیبا و مدرن -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* ----- Base & Reset ----- */
+        :root {
+            --primary-gold: #FFD700;
+            --dark-gold: #C9A227;
+            --light-gold: #FFF9C4;
+            --bg-dark: #0F0F0F;
+            --bg-card: #1A1A1A;
+            --bg-section: #111111;
+            --text-light: #F5F5F5;
+            --text-gray: #B0B0B0;
+            --accent-blue: #1E90FF;
+            --gradient-gold: linear-gradient(135deg, #FFD700, #C9A227, #B8860B);
+            --shadow-gold: 0 8px 32px rgba(255, 215, 0, 0.15);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: 'Sahel', 'Vazirmatn', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background: #0d0d0d;
-            color: #f5d77a;
-            line-height: 1.6;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
             overflow-x: hidden;
+            font-weight: 300;
+        }
+        
+        /* ----- Navigation ----- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFD700, #C9A227);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .logo-text h2 {
+            color: var(--primary-gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-top: 3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            position: relative;
+            font-weight: 400;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-gold);
+            bottom: -5px;
+            right: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
         /* ----- Hero Section ----- */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #2d2200 100%);
+            padding: 0 5%;
+            background: linear-gradient(135deg, 
+                rgba(15, 15, 15, 0.95) 0%, 
+                rgba(26, 26, 26, 0.9) 50%, 
+                rgba(43, 32, 0, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            overflow: hidden;
-            padding: 0 20px;
+            margin-top: 80px;
         }
         
         .hero::before {
             content: '';
             position: absolute;
+            top: 0;
+            right: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 70% 30%, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 50%);
             z-index: 1;
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 700px;
             z-index: 2;
             position: relative;
         }
         
         .hero h1 {
-            font-size: 3.2rem;
-            color: gold;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            text-shadow: 0 2px 20px rgba(255, 215, 0, 0.3);
         }
         
         .hero p {
             font-size: 1.4rem;
-            margin-bottom: 40px;
-            color: #f5f5f5;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        .highlight {
+            color: var(--primary-gold);
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 215, 0, 0.2);
+            bottom: 5px;
+            right: 0;
+            z-index: -1;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
         
         .cta-btn {
-            background: linear-gradient(45deg, #ffd700, #c9a227);
+            background: var(--gradient-gold);
             color: #000;
-            padding: 18px 45px;
+            padding: 1.2rem 2.5rem;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.4s;
-            z-index: 2;
-            position: relative;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-gold);
             border: 2px solid transparent;
         }
         
         .cta-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
-            background: linear-gradient(45deg, #c9a227, #ffd700);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25);
+            background: linear-gradient(135deg, #C9A227, #FFD700);
         }
         
-        /* ----- Floating gold bars ----- */
-        .gold-bar {
-            position: absolute;
-            width: 50px;
-            height: 18px;
-            background: linear-gradient(90deg, gold, #ffed4e);
-            animation: fall linear infinite;
-            border-radius: 4px;
-            box-shadow: 0 0 10px gold;
-            z-index: 1;
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
         }
         
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
+        .cta-btn.secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
         }
         
         /* ----- Info Section ----- */
         .info {
-            padding: 80px 5%;
+            padding: 6rem 5%;
+            background: var(--bg-section);
+        }
+        
+        .section-header {
             text-align: center;
-            background: #111;
+            margin-bottom: 4rem;
         }
         
-        .info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: gold;
-            position: relative;
-            display: inline-block;
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
         
-        .info h2::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 3px;
-            background: gold;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
         
         .card {
-            background: linear-gradient(145deg, #1a1a1a, #222);
-            padding: 35px 25px;
+            background: var(--bg-card);
+            padding: 2.5rem 2rem;
             border-radius: 20px;
-            flex: 1 1 280px;
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            max-width: 320px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
         }
         
         .card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            right: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, gold, #c9a227);
+            background: var(--gradient-gold);
         }
         
         .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
-            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-gold);
+            border-color: rgba(255, 215, 0, 0.3);
         }
         
         .card-icon {
             font-size: 2.8rem;
-            color: gold;
-            margin-bottom: 25px;
-            background: rgba(255, 215, 0, 0.1);
-            width: 80px;
-            height: 80px;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            margin: 0 auto 25px;
+            background: rgba(255, 215, 0, 0.1);
         }
         
         .card h3 {
-            margin-bottom: 20px;
-            color: gold;
-            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         
         .card p {
+            color: var(--text-gray);
             font-size: 1.05rem;
-            color: #e0e0e0;
+            line-height: 1.8;
         }
         
         /* ----- Counter Section ----- */
         .counter-section {
-            padding: 80px 5%;
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%);
             text-align: center;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
             position: relative;
             overflow: hidden;
         }
@@ -211,166 +337,281 @@
         .counter-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
         }
         
-        .counter-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 30px;
-            color: #f5d77a;
+        .counter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 4rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
         }
         
         .counter {
-            font-size: 3.5rem;
-            color: gold;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            font-size: 4.5rem;
+            color: var(--primary-gold);
+            font-weight: 800;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            margin: 1.5rem 0;
+            font-family: 'Sahel', sans-serif;
             direction: ltr;
-        }
-        
-        .counter-subtitle {
-            font-size: 1.2rem;
-            color: #ccc;
-            margin-top: 15px;
+            display: block;
         }
         
         /* ----- Chart Section ----- */
         .chart-section {
-            padding: 80px 5%;
-            background: #111;
+            padding: 6rem 5%;
+            background: var(--bg-section);
             text-align: center;
-        }
-        
-        .chart-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 50px;
-            color: gold;
         }
         
         .chart-container {
             max-width: 900px;
             margin: 0 auto;
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 215, 0, 0.1);
         }
         
         /* ----- News Section ----- */
         .news-section {
-            padding: 80px 5%;
-            background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
-            color: #f5d77a;
-            text-align: right;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
-        }
-        
-        .news-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 40px;
-            color: gold;
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section) 100%);
             text-align: center;
         }
         
         .news-container {
             max-width: 1000px;
             margin: 0 auto;
-            background: #0d0d0d;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 25px;
             border: 1px solid rgba(255, 215, 0, 0.1);
         }
         
-        .news-section ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
         
-        .news-section li {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        .news-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.8rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s;
+            text-align: right;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .news-item h4 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .news-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* ----- Contact Form ----- */
+        .contact-section {
+            padding: 6rem 5%;
+            background: var(--bg-section);
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-gold);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+        }
+        
+        .contact-detail {
             display: flex;
             align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
         }
         
-        .news-section li:last-child {
-            border-bottom: none;
-        }
-        
-        .news-icon {
-            color: gold;
+        .contact-detail i {
+            color: var(--primary-gold);
             font-size: 1.2rem;
-            margin-left: 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
         }
         
-        .news-section a {
-            color: #f5d77a;
-            text-decoration: none;
-            font-size: 1.1rem;
+        .contact-form {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-size: 1rem;
             transition: all 0.3s;
-            flex: 1;
         }
         
-        .news-section a:hover {
-            color: gold;
-            text-decoration: underline;
-        }
-        
-        .news-date {
-            color: #aaa;
-            font-size: 0.9rem;
-            margin-right: 20px;
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
         }
         
         /* ----- Footer ----- */
         footer {
             background: #000;
-            padding: 40px 20px;
+            padding: 4rem 5% 2rem;
             text-align: center;
-            font-size: 1rem;
-            color: #f5d77a;
             border-top: 1px solid rgba(255, 215, 0, 0.2);
         }
         
-        .footer-logo {
-            font-size: 2rem;
-            color: gold;
-            margin-bottom: 20px;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: right;
         }
         
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 20px 0;
+        .footer-logo {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h4 {
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: #f5d77a;
+            color: var(--text-gray);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
         
         .footer-links a:hover {
-            color: gold;
+            color: var(--primary-gold);
         }
         
         .copyright {
-            margin-top: 30px;
-            color: #aaa;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
             font-size: 0.9rem;
         }
         
         /* ----- Responsive Design ----- */
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.4rem;
+            }
+            
+            .counter {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background: rgba(15, 15, 15, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 2px solid var(--primary-gold);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                margin-top: 70px;
+                text-align: center;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -379,74 +620,63 @@
                 font-size: 1.2rem;
             }
             
-            .card {
-                flex: 1 1 45%;
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
             }
             
             .counter {
                 font-size: 2.8rem;
             }
+            
+            .counter-container {
+                padding: 3rem 1.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .chart-container {
+                padding: 2rem 1rem;
+            }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
             }
             
-            .card {
-                flex: 1 1 100%;
-                max-width: 100%;
+            .cta-btn {
+                padding: 1rem 1.8rem;
+                font-size: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
             }
             
             .counter {
                 font-size: 2.2rem;
             }
             
-            .chart-container {
-                padding: 20px;
-            }
-            
-            .news-container {
-                padding: 25px;
-            }
-            
-            .news-section li {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .news-date {
-                margin-right: 0;
-                margin-top: 10px;
-                order: 2;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .cta-btn {
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-            
-            .info h2, .counter-section h2, .chart-section h2, .news-section h2 {
-                font-size: 1.8rem;
-            }
-            
-            .counter {
-                font-size: 1.8rem;
+            .card {
+                padding: 2rem 1.5rem;
             }
             
             .card-icon {
-                width: 70px;
-                height: 70px;
+                width: 60px;
+                height: 60px;
                 font-size: 2.2rem;
             }
         }
@@ -454,52 +684,84 @@
 </head>
 <body>
 
-<header class="hero">
-    <div class="hero-content">
-        <h1>بيمه عمر مبتنی بر طلا</h1>
-        <p>سرمايه‌گذاری مطمئن با پشتوانه طلا برای آینده‌ای درخشان و امن</p>
-        <a href="#contact" class="cta-btn">
-            <i class="fas fa-user-tie" style="margin-left: 10px;"></i>
-            درخواست مشاوره رایگان
-        </a>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="logo-container">
+        <div class="logo-img">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="logo-text">
+            <h2>بیمه پاسارگاد</h2>
+            <p>بیمه عمر مبتنی بر طلا</p>
+        </div>
     </div>
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="nav-links" id="navLinks">
+        <a href="#home">خانه</a>
+        <a href="#features">مزایا</a>
+        <a href="#statistics">آمار</a>
+        <a href="#chart">نمودار سود</a>
+        <a href="#news">اخبار</a>
+        <a href="#contact">تماس</a>
+    </div>
+</nav>
 
-    <!-- Gold bars animation -->
-    <div class="gold-bar" style="left:5%; animation-duration:8s;"></div>
-    <div class="gold-bar" style="left:15%; animation-duration:10s;"></div>
-    <div class="gold-bar" style="left:25%; animation-duration:7s;"></div>
-    <div class="gold-bar" style="left:35%; animation-duration:9s;"></div>
-    <div class="gold-bar" style="left:50%; animation-duration:6s;"></div>
-    <div class="gold-bar" style="left:65%; animation-duration:8.5s;"></div>
-    <div class="gold-bar" style="left:75%; animation-duration:11s;"></div>
-    <div class="gold-bar" style="left:85%; animation-duration:7.5s;"></div>
-    <div class="gold-bar" style="left:95%; animation-duration:9.5s;"></div>
-</header>
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>بیمه عمر <span class="highlight">مبتنی بر طلا</span></h1>
+        <p>سرمایه‌گذاری مطمئن با پشتوانه طلا برای آینده‌ای درخشان و امن. 
+           <br>حفظ ارزش سرمایه در برابر تورم با بیمه‌نامه طلایی پاسارگاد</p>
+        
+        <div class="cta-buttons">
+            <a href="#contact" class="cta-btn">
+                <i class="fas fa-user-tie"></i>
+                درخواست مشاوره رایگان
+            </a>
+            <a href="#features" class="cta-btn secondary">
+                <i class="fas fa-star"></i>
+                مزایای بیمه طلا
+            </a>
+        </div>
+    </div>
+</section>
 
-<section class="info">
-    <h2>چرا بیمه عمر مبتنی بر طلا پاسارگاد؟</h2>
+<!-- Features Section -->
+<section class="info" id="features">
+    <div class="section-header">
+        <h2>چرا بیمه عمر مبتنی بر طلا؟</h2>
+        <p>با بیمه طلایی پاسارگاد، آینده مالی خود و خانواده‌تان را تضمین کنید</p>
+    </div>
+    
     <div class="cards">
         <div class="card">
             <div class="card-icon">
                 <i class="fas fa-gem"></i>
             </div>
             <h3>پشتوانه طلا</h3>
-            <p>حفظ ارزش سرمایه در برابر تورم با مبنای طلا و سکه</p>
+            <p>حفظ ارزش سرمایه در برابر تورم با مبنای طلا و سکه. سرمایه شما با قیمت طلا رشد می‌کند</p>
         </div>
+        
         <div class="card">
             <div class="card-icon">
                 <i class="fas fa-chart-line"></i>
             </div>
             <h3>سود مشارکت</h3>
-            <p>سهم شما از سود سرمایه‌گذاری‌های بزرگ و مطمئن شرکت</p>
+            <p>سهم شما از سود سرمایه‌گذاری‌های بزرگ و مطمئن شرکت بیمه پاسارگاد</p>
         </div>
+        
         <div class="card">
             <div class="card-icon">
                 <i class="fas fa-shield-alt"></i>
             </div>
             <h3>امنیت آینده</h3>
-            <p>آرامش خاطر برای شما و خانواده‌تان با تضمین بیمه‌ای</p>
+            <p>آرامش خاطر برای شما و خانواده‌تان با تضمین بیمه‌ای و پوشش‌های کامل</p>
         </div>
+        
         <div class="card">
             <div class="card-icon">
                 <i class="fas fa-hand-holding-usd"></i>
@@ -507,110 +769,242 @@
             <h3>وام بدون ضامن</h3>
             <p>امکان دریافت وام آسان تا ۹۰ درصد ارزش بیمه‌نامه بدون نیاز به ضامن</p>
         </div>
+        
         <div class="card">
             <div class="card-icon">
                 <i class="fas fa-umbrella"></i>
             </div>
-            <h3>بهره مندی از 12 پوشش</h3>
-            <p>sos تکمیلی و آتش سوزی و...</p>
+            <h3>۱۲ پوشش تکمیلی</h3>
+            <p>بهره‌مندی از پوشش‌های تکمیلی متنوع برای شرایط مختلف زندگی</p>
         </div>
+        
         <div class="card">
             <div class="card-icon">
                 <i class="fas fa-award"></i>
             </div>
             <h3>تضمین کیفیت</h3>
-            <p>بیمه‌نامه معتبر از بزرگترین شرکت بیمه خصوصی ایران</p>
+            <p>بیمه‌نامه معتبر از بزرگترین شرکت بیمه خصوصی ایران با سابقه درخشان</p>
         </div>
     </div>
 </section>
 
-<section class="counter-section">
-    <h2>فروش این طرح تا به امروز</h2>
-    <div class="counter" id="sales-counter">0</div>
-    <p class="counter-subtitle">میلیارد تومان</p>
+<!-- Counter Section -->
+<section class="counter-section" id="statistics">
+    <div class="counter-container">
+        <h2>فروش موفق این طرح</h2>
+        <p>تا امروز بیش از</p>
+        <div class="counter" id="sales-counter">0</div>
+        <p>میلیارد تومان بیمه عمر طلایی فروخته شده است</p>
+    </div>
 </section>
 
-<section class="chart-section">
-    <h2>سود مشارکت در منافع (رشد سالانه)</h2>
+<!-- Chart Section -->
+<section class="chart-section" id="chart">
+    <div class="section-header">
+        <h2>سود مشارکت در منافع</h2>
+        <p>رشد سالانه سود بیمه عمر مبتنی بر طلا</p>
+    </div>
+    
     <div class="chart-container">
         <canvas id="profitChart"></canvas>
     </div>
 </section>
 
+<!-- News Section -->
 <section class="news-section" id="news">
-    <h2>آخرین اخبار اقتصادی</h2>
+    <div class="section-header">
+        <h2>آخرین اخبار اقتصادی</h2>
+        <p>مرتبط با بازار طلا و بیمه</p>
+    </div>
+    
     <div class="news-container">
-        <ul id="rss-news">
-            <!-- اخبار از طریق JavaScript بارگذاری می‌شود -->
-            <li>
-                <i class="fas fa-newspaper news-icon"></i>
-                <a href="https://eghtesaad24.ir" target="_blank">در حال بارگذاری اخبار...</a>
-                <div class="news-date">لطفا منتظر بمانید</div>
-            </li>
-        </ul>
+        <div class="news-grid" id="rss-news">
+            <div class="news-item">
+                <h4>رشد ۲۰ درصدی قیمت طلا</h4>
+                <p>قیمت طلا در سه ماهه اول ۱۴۰۳ رشد چشمگیری داشته است که بر ارزش بیمه‌نامه‌های مبتنی بر طلا تأثیر مثبت گذاشته.</p>
+                <span style="color: var(--primary-gold); font-size: 0.9rem;">۱۴۰۳/۰۴/۱۵</span>
+            </div>
+            
+            <div class="news-item">
+                <h4>تأثیر نرخ دلار بر بیمه عمر</h4>
+                <p>نوسانات نرخ دلار بر بازار سرمایه و ارزش بیمه‌های عمر مبتنی بر طلا تأثیر مستقیم دارد.</p>
+                <span style="color: var(--primary-gold); font-size: 0.9rem;">۱۴۰۳/۰۴/۱۰</span>
+            </div>
+            
+            <div class="news-item">
+                <h4>راهکار حفظ ارزش سرمایه</h4>
+                <p>بیمه عمر مبتنی بر طلا به عنوان راهکاری مطمئن برای حفظ ارزش سرمایه در شرایط تورمی معرفی شد.</p>
+                <span style="color: var(--primary-gold); font-size: 0.9rem;">۱۴۰۳/۰۴/۰۵</span>
+            </div>
+        </div>
     </div>
 </section>
 
-<footer id="contact">
-    <div class="footer-logo">
-        <i class="fas fa-landmark"></i>
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <div class="section-header">
+        <h2>درخواست مشاوره رایگان</h2>
+        <p>کارشناسان ما آماده پاسخگویی به سوالات شما هستند</p>
     </div>
-    <h3>شرکت بیمه پاسارگاد</h3>
-    <p>ارائه دهنده بیمه عمر مبتنی بر طلا با بیشترین سود مشارکت</p>
     
-    <div class="footer-links">
-        <a href="#"><i class="fas fa-phone" style="margin-left: 8px;"></i> ۰۲۱-۸۴۲۳۴</a>
-        <a href="#"><i class="fas fa-envelope" style="margin-left: 8px;"></i> info@pasargadinsurance.ir</a>
-        <a href="#"><i class="fas fa-map-marker-alt" style="margin-left: 8px;"></i> تهران، خیابان ولیعصر</a>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h3>با ما در تماس باشید</h3>
+            <p>برای دریافت اطلاعات بیشتر و مشاوره رایگان در مورد بیمه عمر مبتنی بر طلا، فرم روبرو را پر کنید یا با شماره‌های زیر تماس بگیرید.</p>
+            
+            <div class="contact-details">
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <p style="font-weight: 600;">شماره تماس</p>
+                        <p>۰۲۱-۸۴۲۳۴</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <p style="font-weight: 600;">ایمیل</p>
+                        <p>info@pasargadinsurance.ir</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <p style="font-weight: 600;">آدرس</p>
+                        <p>تهران، خیابان ولیعصر، پلاک ۱۰۰</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <form id="consultationForm">
+                <div class="form-group">
+                    <input type="text" placeholder="نام و نام خانوادگی" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" placeholder="شماره تماس" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" placeholder="آدرس ایمیل">
+                </div>
+                
+                <div class="form-group">
+                    <select required>
+                        <option value="" disabled selected>نوع درخواست</option>
+                        <option value="consultation">مشاوره بیمه عمر طلا</option>
+                        <option value="info">دریافت اطلاعات بیشتر</option>
+                        <option value="callback">درخواست تماس</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="cta-btn" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-paper-plane"></i>
+                    ارسال درخواست
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-about">
+            <div class="footer-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>بیمه پاسارگاد</h3>
+            <p>ارائه دهنده بیمه عمر مبتنی بر طلا با بیشترین سود مشارکت و پوشش‌های تکمیلی</p>
+        </div>
+        
+        <div class="footer-links">
+            <h4>لینک‌های سریع</h4>
+            <ul>
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#features">مزایای بیمه</a></li>
+                <li><a href="#chart">نمودار سود</a></li>
+                <li><a href="#news">اخبار</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-links">
+            <h4>خدمات بیمه</h4>
+            <ul>
+                <li><a href="#">بیمه عمر طلایی</a></li>
+                <li><a href="#">بیمه درمان</a></li>
+                <li><a href="#">بیمه مسئولیت</a></li>
+                <li><a href="#">بیمه آتش‌سوزی</a></li>
+                <li><a href="#">بیمه شخص ثالث</a></li>
+            </ul>
+        </div>
     </div>
     
     <div class="copyright">
-        <p>تمامی حقوق محفوظ است © ۱۴۰۳ - بیمه عمر پاسارگاد</p>
+        <p>© ۱۴۰۳ - تمامی حقوق برای بیمه پاسارگاد محفوظ است | طراحی شده با ❤️</p>
     </div>
 </footer>
 
 <script>
-    // ----- Counter for sales -----
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+    
+    // Counter Animation
     let sales = 0;
-    const targetSales = 800000000000; // 800 میلیارد
+    const targetSales = 800; // میلیارد
     const counterElem = document.getElementById('sales-counter');
     
     function updateSales() {
         if(sales < targetSales){
-            const increment = Math.max(Math.floor(targetSales/300), 1000000000); // حداقل افزایش ۱ میلیارد
+            const increment = Math.max(targetSales/200, 1);
             sales += increment;
             if(sales > targetSales) sales = targetSales;
             
-            // نمایش به صورت میلیارد تومان
-            const salesInBillion = (sales / 1000000000).toFixed(1);
-            counterElem.innerText = salesInBillion.replace('.۰', '');
+            counterElem.innerText = Math.floor(sales).toLocaleString();
             
-            // ادامه انیمیشن
-            setTimeout(updateSales, 30);
+            requestAnimationFrame(updateSales);
         }
     }
     
-    // شروع انیمیشن شمارنده پس از بارگذاری صفحه
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(updateSales, 500);
-    });
+    // Start counter animation
+    setTimeout(updateSales, 1000);
     
-    // ----- Chart.js -----
+    // Chart.js
     const ctx = document.getElementById('profitChart').getContext('2d');
     new Chart(ctx, {
         type: 'line',
         data: {
             labels: ['۱۴۰۰', '۱۴۰۱', '۱۴۰۲', '۱۴۰۳', '۱۴۰۴'],
             datasets: [{
-                label: 'سود مشارکت در منافع (میلیارد تومان)',
+                label: 'سود مشارکت (میلیارد تومان)',
                 data: [800, 950, 1200, 1600, 2000],
-                borderColor: 'gold',
+                borderColor: '#FFD700',
                 backgroundColor: 'rgba(255, 215, 0, 0.1)',
                 borderWidth: 3,
                 tension: 0.4,
                 fill: true,
                 pointRadius: 6,
-                pointBackgroundColor: 'gold',
+                pointBackgroundColor: '#FFD700',
                 pointBorderColor: '#000',
                 pointBorderWidth: 2
             }]
@@ -620,31 +1014,18 @@
             plugins: {
                 legend: {
                     labels: {
-                        color: 'gold',
+                        color: '#FFD700',
                         font: {
                             size: 14,
-                            family: 'Vazirmatn'
+                            family: 'Sahel'
                         }
-                    }
-                },
-                tooltip: {
-                    rtl: true,
-                    titleFont: {
-                        family: 'Vazirmatn'
-                    },
-                    bodyFont: {
-                        family: 'Vazirmatn'
                     }
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: 'gold',
-                        font: {
-                            size: 13,
-                            family: 'Vazirmatn'
-                        }
+                        color: '#FFD700'
                     },
                     grid: {
                         color: 'rgba(255, 215, 0, 0.1)'
@@ -652,11 +1033,7 @@
                 },
                 y: {
                     ticks: {
-                        color: 'gold',
-                        font: {
-                            size: 13,
-                            family: 'Vazirmatn'
-                        },
+                        color: '#FFD700',
                         callback: function(value) {
                             return value + ' میلیارد';
                         }
@@ -669,83 +1046,13 @@
         }
     });
     
-    // ----- RSS Feed for news -----
-    const RSS_URL = "https://api.rss2json.com/v1/api.json?rss_url=https://eghtesaad24.ir/fa/rss/11";
-    
-    // تابع جایگزین برای زمانی که API RSS کار نمی‌کند
-    function loadFallbackNews() {
-        const ul = document.getElementById('rss-news');
-        ul.innerHTML = '';
-        
-        const fallbackNews = [
-            {title: "رشد ۲۰ درصدی قیمت طلا در سه ماهه اول ۱۴۰۳", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۴/۱۵"},
-            {title: "تاثیر نرخ دلار بر بازار سرمایه و بیمه‌های عمر", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۴/۱۰"},
-            {title: "بیمه عمر مبتنی بر طلا؛ راهکاری برای حفظ ارزش سرمایه", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۴/۰۵"},
-            {title: "افزایش سرمایه‌گذاری در صندوق‌های طلایی", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۳/۲۸"},
-            {title: "نگاهی به عملکرد بیمه‌های عمر در سال ۱۴۰۲", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۳/۲۰"}
-        ];
-        
-        fallbackNews.forEach(item => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <i class="fas fa-newspaper news-icon"></i>
-                <a href="${item.link}" target="_blank">${item.title}</a>
-                <div class="news-date">${item.date}</div>
-            `;
-            ul.appendChild(li);
-        });
-    }
-    
-    // تلاش برای دریافت RSS
-    fetch(RSS_URL)
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(data => {
-            if (data.items && data.items.length > 0) {
-                const ul = document.getElementById('rss-news');
-                ul.innerHTML = '';
-                
-                data.items.slice(0, 5).forEach(item => {
-                    const li = document.createElement('li');
-                    // استخراج تاریخ از محتوا یا استفاده از تاریخ انتشار
-                    const newsDate = item.pubDate ? new Date(item.pubDate).toLocaleDateString('fa-IR') : 'بدون تاریخ';
-                    
-                    li.innerHTML = `
-                        <i class="fas fa-newspaper news-icon"></i>
-                        <a href="${item.link}" target="_blank">${item.title}</a>
-                        <div class="news-date">${newsDate}</div>
-                    `;
-                    ul.appendChild(li);
-                });
-            } else {
-                loadFallbackNews();
-            }
-        })
-        .catch(err => {
-            console.error("خطا در بارگذاری RSS:", err);
-            loadFallbackNews();
-        });
-        
-    // ----- Smooth scrolling for anchor links -----
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
+    // Form Submission
+    document.getElementById('consultationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('درخواست مشاوره شما با موفقیت ثبت شد. کارشناسان ما در اولین فرصت با شما تماس خواهند گرفت.');
+        this.reset();
     });
 </script>
 
 </body>
 </html>
-
