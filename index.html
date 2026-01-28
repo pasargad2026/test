@@ -14,14 +14,15 @@
             --primary-gold: #FFD700;
             --dark-gold: #C9A227;
             --light-gold: #FFF9C4;
-            --bg-dark: #0F0F0F;
-            --bg-card: #1A1A1A;
+            --gold-glow: rgba(255, 215, 0, 0.3);
+            --bg-dark: #0a0a0a;
+            --bg-card: #151515;
             --bg-section: #111111;
             --text-light: #F5F5F5;
             --text-gray: #B0B0B0;
             --accent-blue: #1E90FF;
             --gradient-gold: linear-gradient(135deg, #FFD700, #C9A227, #B8860B);
-            --shadow-gold: 0 8px 32px rgba(255, 215, 0, 0.15);
+            --shadow-gold: 0 8px 32px rgba(255, 215, 0, 0.25);
         }
         
         * {
@@ -41,6 +42,35 @@
             line-height: 1.7;
             overflow-x: hidden;
             font-weight: 300;
+            position: relative;
+        }
+        
+        /* ----- Gold Background Particles ----- */
+        .gold-particle {
+            position: fixed;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: floatParticle linear infinite;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
         }
         
         /* ----- Navigation ----- */
@@ -48,14 +78,15 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
         
         .logo-container {
@@ -64,28 +95,53 @@
             gap: 15px;
         }
         
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #FFD700, #C9A227);
-            border-radius: 50%;
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--gradient-gold);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: logoShine 3s infinite linear;
+        }
+        
+        @keyframes logoShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
         
         .logo-text h2 {
             color: var(--primary-gold);
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
         }
         
         .logo-text p {
             color: var(--text-gray);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-top: 3px;
         }
         
@@ -101,6 +157,7 @@
             transition: all 0.3s;
             position: relative;
             font-weight: 400;
+            padding: 5px 0;
         }
         
         .nav-links a:hover {
@@ -113,7 +170,7 @@
             width: 0;
             height: 2px;
             background: var(--gradient-gold);
-            bottom: -5px;
+            bottom: 0;
             right: 0;
             transition: width 0.3s;
         }
@@ -137,15 +194,15 @@
             display: flex;
             align-items: center;
             padding: 0 5%;
-            background: linear-gradient(135deg, 
-                rgba(15, 15, 15, 0.95) 0%, 
-                rgba(26, 26, 26, 0.9) 50%, 
-                rgba(43, 32, 0, 0.85) 100%),
-                url('https://images.unsplash.com/photo-1552422535-c45813c61732?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(
+                135deg, 
+                rgba(10, 10, 10, 0.95) 0%, 
+                rgba(21, 21, 21, 0.9) 50%, 
+                rgba(43, 32, 0, 0.85) 100%
+            );
             position: relative;
             margin-top: 80px;
+            overflow: hidden;
         }
         
         .hero::before {
@@ -155,9 +212,9 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 70% 30%, 
-                rgba(255, 215, 0, 0.1) 0%, 
-                transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.05) 0%, transparent 30%);
             z-index: 1;
         }
         
@@ -168,16 +225,23 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             color: var(--primary-gold);
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            font-weight: 800;
-            text-shadow: 0 2px 20px rgba(255, 215, 0, 0.3);
+            font-weight: 900;
+            text-shadow: 0 5px 30px rgba(255, 215, 0, 0.4);
+            position: relative;
+            animation: titleGlow 2s infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 5px 30px rgba(255, 215, 0, 0.4); }
+            100% { text-shadow: 0 5px 50px rgba(255, 215, 0, 0.7); }
         }
         
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 3rem;
             color: var(--text-light);
             font-weight: 300;
@@ -186,7 +250,7 @@
         
         .highlight {
             color: var(--primary-gold);
-            font-weight: 500;
+            font-weight: 700;
             position: relative;
             display: inline-block;
         }
@@ -195,11 +259,12 @@
             content: '';
             position: absolute;
             width: 100%;
-            height: 8px;
+            height: 10px;
             background: rgba(255, 215, 0, 0.2);
             bottom: 5px;
             right: 0;
             z-index: -1;
+            border-radius: 5px;
         }
         
         .cta-buttons {
@@ -222,12 +287,31 @@
             gap: 10px;
             box-shadow: var(--shadow-gold);
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: -1;
+        }
+        
+        .cta-btn:hover::before {
+            transform: translateX(100%);
         }
         
         .cta-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25);
-            background: linear-gradient(135deg, #C9A227, #FFD700);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
         }
         
         .cta-btn.secondary {
@@ -240,26 +324,201 @@
             background: rgba(255, 215, 0, 0.1);
         }
         
+        /* ----- Rotating Gold Ingot ----- */
+        .rotating-ingot {
+            position: absolute;
+            width: 180px;
+            height: 60px;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            opacity: 0.7;
+        }
+        
+        .gold-ingot {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                #FFD700 0%,
+                #FFEC8B 25%,
+                #FFD700 50%,
+                #E6BE00 75%,
+                #FFD700 100%
+            );
+            border-radius: 8px 25px 25px 8px;
+            position: relative;
+            animation: rotateIngot 15s infinite linear;
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.6),
+                inset 0 0 30px rgba(255, 255, 255, 0.4);
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes rotateIngot {
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(180deg) scale(1.05); }
+            100% { transform: rotateY(360deg) scale(1); }
+        }
+        
+        .gold-ingot::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            width: 45%;
+            height: 70%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            border-radius: 4px;
+            animation: shine 3s infinite alternate;
+            filter: blur(1px);
+        }
+        
+        .gold-ingot::after {
+            content: '۱ کیلو';
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transform: rotateY(180deg);
+        }
+        
+        @keyframes shine {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
+        }
+        
+        /* ----- Gold Bar Rain ----- */
+        .gold-bar-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .gold-bar {
+            position: absolute;
+            width: 40px;
+            height: 12px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--dark-gold));
+            border-radius: 3px 8px 8px 3px;
+            top: -20px;
+            opacity: 0.6;
+            animation: fallDown linear infinite;
+            box-shadow: 0 0 10px var(--primary-gold);
+        }
+        
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* ----- Floating Gold Coins ----- */
+        .floating-coin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 30% 30%, #FFD700, #C9A227);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 15px rgba(255, 215, 0, 0.5),
+                inset 0 -3px 5px rgba(0, 0, 0, 0.2);
+            animation: floatCoin 8s infinite ease-in-out;
+            z-index: 0;
+        }
+        
+        .floating-coin::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            top: 7px;
+            right: 7px;
+        }
+        
+        @keyframes floatCoin {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
         /* ----- Info Section ----- */
         .info {
             padding: 6rem 5%;
             background: var(--bg-section);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            top: -150px;
+            left: -150px;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 2;
         }
         
         .section-header h2 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: var(--primary-gold);
-            margin-bottom: 1rem;
-            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            border-radius: 2px;
+            animation: pulseLine 2s infinite;
+        }
+        
+        @keyframes pulseLine {
+            0%, 100% { width: 100px; }
+            50% { width: 150px; }
         }
         
         .section-header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-gray);
             max-width: 700px;
             margin: 0 auto;
@@ -268,19 +527,22 @@
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .card {
             background: var(--bg-card);
-            padding: 2.5rem 2rem;
+            padding: 3rem 2rem;
             border-radius: 20px;
-            transition: all 0.4s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .card::before {
@@ -291,38 +553,70 @@
             width: 100%;
             height: 5px;
             background: var(--gradient-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
         }
         
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-gold);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(255, 215, 0, 0.2);
             border-color: rgba(255, 215, 0, 0.3);
         }
         
         .card-icon {
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            width: 70px;
-            height: 70px;
+            margin-bottom: 2rem;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             background: rgba(255, 215, 0, 0.1);
+            transition: all 0.4s;
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
         
         .card h3 {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             color: var(--text-light);
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
         }
         
         .card p {
             color: var(--text-gray);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
+        }
+        
+        .card-gold-corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            left: 20px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s;
+        }
+        
+        .card:hover .card-gold-corner {
+            opacity: 1;
+            transform: scale(1);
         }
         
         /* ----- Counter Section ----- */
@@ -339,32 +633,71 @@
             position: absolute;
             top: -50%;
             right: -20%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            animation: rotateBackground 20s infinite linear;
+        }
+        
+        @keyframes rotateBackground {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .counter-container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(26, 26, 26, 0.8);
-            padding: 4rem;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 215, 0, 0.15);
+            background: rgba(21, 21, 21, 0.9);
+            padding: 5rem 4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
             backdrop-filter: blur(10px);
             position: relative;
             z-index: 2;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .counter-container::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.1);
+            border-radius: 25px;
+            pointer-events: none;
         }
         
         .counter {
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             color: var(--primary-gold);
-            font-weight: 800;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            margin: 1.5rem 0;
+            font-weight: 900;
+            text-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.5),
+                0 0 80px rgba(255, 215, 0, 0.3);
+            margin: 2rem 0;
             font-family: 'Sahel', sans-serif;
             direction: ltr;
             display: block;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: counterPulse 2s infinite alternate;
+        }
+        
+        @keyframes counterPulse {
+            0% { text-shadow: 0 0 40px rgba(255, 215, 0, 0.5); }
+            100% { text-shadow: 0 0 60px rgba(255, 215, 0, 0.8); }
+        }
+        
+        .counter-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-top: 1rem;
         }
         
         /* ----- Chart Section ----- */
@@ -372,6 +705,8 @@
             padding: 6rem 5%;
             background: var(--bg-section);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
         .chart-container {
@@ -380,8 +715,12 @@
             background: var(--bg-card);
             padding: 3rem;
             border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            z-index: 2;
         }
         
         /* ----- News Section ----- */
@@ -389,6 +728,7 @@
             padding: 6rem 5%;
             background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section) 100%);
             text-align: center;
+            position: relative;
         }
         
         .news-container {
@@ -398,48 +738,81 @@
             padding: 3rem;
             border-radius: 25px;
             border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
         }
         
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-top: 3rem;
         }
         
         .news-item {
             background: rgba(255, 255, 255, 0.03);
-            padding: 1.8rem;
+            padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 215, 0, 0.1);
             transition: all 0.3s;
             text-align: right;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .news-item:hover::before {
+            transform: translateX(100%);
         }
         
         .news-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: rgba(255, 215, 0, 0.3);
-            background: rgba(255, 215, 0, 0.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
         .news-item h4 {
             color: var(--text-light);
             margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
         
         .news-item p {
             color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
         
-        /* ----- Contact Form ----- */
+        /* ----- Contact Section ----- */
         .contact-section {
             padding: 6rem 5%;
             background: var(--bg-section);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
         }
         
         .contact-container {
@@ -449,74 +822,98 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: start;
+            position: relative;
+            z-index: 2;
         }
         
         .contact-info h3 {
             color: var(--primary-gold);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
         }
         
         .contact-details {
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
         
         .contact-detail {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--text-gray);
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .contact-detail:hover {
+            background: rgba(255, 215, 0, 0.05);
+            transform: translateX(-10px);
         }
         
         .contact-detail i {
             color: var(--primary-gold);
-            font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(255, 215, 0, 0.1);
             border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .contact-detail:hover i {
+            transform: scale(1.1);
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
         
         .contact-form {
             background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 3rem;
+            border-radius: 25px;
             border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--text-light);
             font-size: 1rem;
             transition: all 0.3s;
         }
         
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-gold);
             box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.02);
         }
         
         /* ----- Footer ----- */
         footer {
             background: #000;
-            padding: 4rem 5% 2rem;
+            padding: 5rem 5% 2rem;
             text-align: center;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            border-top: 2px solid rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
         
         .footer-content {
@@ -524,20 +921,30 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: 4rem;
             text-align: right;
+            position: relative;
+            z-index: 2;
         }
         
         .footer-logo {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary-gold);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: logoFloat 3s infinite ease-in-out;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         .footer-links h4 {
             color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
         
         .footer-links ul {
@@ -545,25 +952,62 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
         
         .footer-links a {
             color: var(--text-gray);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: inline-block;
+            padding: 0.3rem 0;
         }
         
         .footer-links a:hover {
             color: var(--primary-gold);
+            transform: translateX(-10px);
         }
         
         .copyright {
-            margin-top: 3rem;
+            margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-gray);
             font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ----- Back to Top Button ----- */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
         }
         
         /* ----- Responsive Design ----- */
@@ -572,12 +1016,18 @@
                 font-size: 3rem;
             }
             
+            .rotating-ingot {
+                width: 140px;
+                height: 50px;
+                right: 5%;
+            }
+            
             .section-header h2 {
-                font-size: 2.4rem;
+                font-size: 2.5rem;
             }
             
             .counter {
-                font-size: 3.5rem;
+                font-size: 4rem;
             }
         }
         
@@ -592,7 +1042,7 @@
                 top: 100%;
                 right: 0;
                 width: 100%;
-                background: rgba(15, 15, 15, 0.98);
+                background: rgba(10, 10, 10, 0.98);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
@@ -617,7 +1067,11 @@
             }
             
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
+            }
+            
+            .rotating-ingot {
+                display: none;
             }
             
             .cta-buttons {
@@ -629,11 +1083,11 @@
             }
             
             .counter {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .counter-container {
-                padding: 3rem 1.5rem;
+                padding: 3rem 2rem;
             }
             
             .contact-container {
@@ -644,11 +1098,18 @@
             .chart-container {
                 padding: 2rem 1rem;
             }
+            
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
         
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero p {
@@ -656,7 +1117,7 @@
             }
             
             .cta-btn {
-                padding: 1rem 1.8rem;
+                padding: 1rem 2rem;
                 font-size: 1rem;
                 width: 100%;
                 justify-content: center;
@@ -667,27 +1128,44 @@
             }
             
             .counter {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .card {
-                padding: 2rem 1.5rem;
+                padding: 2.5rem 1.5rem;
             }
             
             .card-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 2.2rem;
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .footer-links {
+                text-align: center;
+            }
+            
+            .footer-links a:hover {
+                transform: translateX(0);
             }
         }
     </style>
 </head>
 <body>
 
+<!-- Gold Background Particles -->
+<div id="goldParticles"></div>
+
 <!-- Navigation -->
 <nav class="navbar">
     <div class="logo-container">
-        <div class="logo-img">
+        <div class="logo-icon">
             <i class="fas fa-shield-alt"></i>
         </div>
         <div class="logo-text">
@@ -712,6 +1190,12 @@
 
 <!-- Hero Section -->
 <section class="hero" id="home">
+    <div class="gold-bar-rain" id="goldBarRain"></div>
+    
+    <div class="rotating-ingot">
+        <div class="gold-ingot"></div>
+    </div>
+    
     <div class="hero-content">
         <h1>بیمه عمر <span class="highlight">مبتنی بر طلا</span></h1>
         <p>سرمایه‌گذاری مطمئن با پشتوانه طلا برای آینده‌ای درخشان و امن. 
@@ -723,11 +1207,17 @@
                 درخواست مشاوره رایگان
             </a>
             <a href="#features" class="cta-btn secondary">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-gem"></i>
                 مزایای بیمه طلا
             </a>
         </div>
     </div>
+    
+    <!-- Floating Coins -->
+    <div class="floating-coin" style="top:20%; left:10%; animation-delay:0s;"></div>
+    <div class="floating-coin" style="top:30%; left:85%; animation-delay:1s;"></div>
+    <div class="floating-coin" style="top:70%; left:15%; animation-delay:2s;"></div>
+    <div class="floating-coin" style="top:80%; left:80%; animation-delay:3s;"></div>
 </section>
 
 <!-- Features Section -->
@@ -744,6 +1234,9 @@
             </div>
             <h3>پشتوانه طلا</h3>
             <p>حفظ ارزش سرمایه در برابر تورم با مبنای طلا و سکه. سرمایه شما با قیمت طلا رشد می‌کند</p>
+            <div class="card-gold-corner">
+                <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
+            </div>
         </div>
         
         <div class="card">
@@ -752,6 +1245,9 @@
             </div>
             <h3>سود مشارکت</h3>
             <p>سهم شما از سود سرمایه‌گذاری‌های بزرگ و مطمئن شرکت بیمه پاسارگاد</p>
+            <div class="card-gold-corner">
+                <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
+            </div>
         </div>
         
         <div class="card">
@@ -760,6 +1256,9 @@
             </div>
             <h3>امنیت آینده</h3>
             <p>آرامش خاطر برای شما و خانواده‌تان با تضمین بیمه‌ای و پوشش‌های کامل</p>
+            <div class="card-gold-corner">
+                <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
+            </div>
         </div>
         
         <div class="card">
@@ -768,6 +1267,9 @@
             </div>
             <h3>وام بدون ضامن</h3>
             <p>امکان دریافت وام آسان تا ۹۰ درصد ارزش بیمه‌نامه بدون نیاز به ضامن</p>
+            <div class="card-gold-corner">
+                <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
+            </div>
         </div>
         
         <div class="card">
@@ -776,6 +1278,9 @@
             </div>
             <h3>۱۲ پوشش تکمیلی</h3>
             <p>بهره‌مندی از پوشش‌های تکمیلی متنوع برای شرایط مختلف زندگی</p>
+            <div class="card-gold-corner">
+                <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
+            </div>
         </div>
         
         <div class="card">
@@ -784,6 +1289,9 @@
             </div>
             <h3>تضمین کیفیت</h3>
             <p>بیمه‌نامه معتبر از بزرگترین شرکت بیمه خصوصی ایران با سابقه درخشان</p>
+            <div class="card-gold-corner">
+                <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -791,10 +1299,10 @@
 <!-- Counter Section -->
 <section class="counter-section" id="statistics">
     <div class="counter-container">
-        <h2>فروش موفق این طرح</h2>
-        <p>تا امروز بیش از</p>
+        <h2 style="font-size: 2.5rem; color: var(--text-light); margin-bottom: 1rem;">فروش موفق این طرح</h2>
+        <p style="font-size: 1.3rem; color: var(--text-gray);">تا امروز بیش از</p>
         <div class="counter" id="sales-counter">0</div>
-        <p>میلیارد تومان بیمه عمر طلایی فروخته شده است</p>
+        <p class="counter-subtitle">میلیارد تومان بیمه عمر طلایی فروخته شده است</p>
     </div>
 </section>
 
@@ -822,19 +1330,19 @@
             <div class="news-item">
                 <h4>رشد ۲۰ درصدی قیمت طلا</h4>
                 <p>قیمت طلا در سه ماهه اول ۱۴۰۳ رشد چشمگیری داشته است که بر ارزش بیمه‌نامه‌های مبتنی بر طلا تأثیر مثبت گذاشته.</p>
-                <span style="color: var(--primary-gold); font-size: 0.9rem;">۱۴۰۳/۰۴/۱۵</span>
+                <span style="color: var(--primary-gold); font-size: 0.9rem; display:block; margin-top:1rem;">۱۴۰۳/۰۴/۱۵</span>
             </div>
             
             <div class="news-item">
                 <h4>تأثیر نرخ دلار بر بیمه عمر</h4>
                 <p>نوسانات نرخ دلار بر بازار سرمایه و ارزش بیمه‌های عمر مبتنی بر طلا تأثیر مستقیم دارد.</p>
-                <span style="color: var(--primary-gold); font-size: 0.9rem;">۱۴۰۳/۰۴/۱۰</span>
+                <span style="color: var(--primary-gold); font-size: 0.9rem; display:block; margin-top:1rem;">۱۴۰۳/۰۴/۱۰</span>
             </div>
             
             <div class="news-item">
                 <h4>راهکار حفظ ارزش سرمایه</h4>
                 <p>بیمه عمر مبتنی بر طلا به عنوان راهکاری مطمئن برای حفظ ارزش سرمایه در شرایط تورمی معرفی شد.</p>
-                <span style="color: var(--primary-gold); font-size: 0.9rem;">۱۴۰۳/۰۴/۰۵</span>
+                <span style="color: var(--primary-gold); font-size: 0.9rem; display:block; margin-top:1rem;">۱۴۰۳/۰۴/۰۵</span>
             </div>
         </div>
     </div>
@@ -850,13 +1358,13 @@
     <div class="contact-container">
         <div class="contact-info">
             <h3>با ما در تماس باشید</h3>
-            <p>برای دریافت اطلاعات بیشتر و مشاوره رایگان در مورد بیمه عمر مبتنی بر طلا، فرم روبرو را پر کنید یا با شماره‌های زیر تماس بگیرید.</p>
+            <p style="color: var(--text-gray); line-height: 1.8; margin-bottom: 2rem;">برای دریافت اطلاعات بیشتر و مشاوره رایگان در مورد بیمه عمر مبتنی بر طلا، فرم روبرو را پر کنید یا با شماره‌های زیر تماس بگیرید.</p>
             
             <div class="contact-details">
                 <div class="contact-detail">
                     <i class="fas fa-phone"></i>
                     <div>
-                        <p style="font-weight: 600;">شماره تماس</p>
+                        <p style="font-weight: 600; color: var(--text-light);">شماره تماس</p>
                         <p>۰۲۱-۸۴۲۳۴</p>
                     </div>
                 </div>
@@ -864,7 +1372,7 @@
                 <div class="contact-detail">
                     <i class="fas fa-envelope"></i>
                     <div>
-                        <p style="font-weight: 600;">ایمیل</p>
+                        <p style="font-weight: 600; color: var(--text-light);">ایمیل</p>
                         <p>info@pasargadinsurance.ir</p>
                     </div>
                 </div>
@@ -872,7 +1380,7 @@
                 <div class="contact-detail">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
-                        <p style="font-weight: 600;">آدرس</p>
+                        <p style="font-weight: 600; color: var(--text-light);">آدرس</p>
                         <p>تهران، خیابان ولیعصر، پلاک ۱۰۰</p>
                     </div>
                 </div>
@@ -917,8 +1425,8 @@
             <div class="footer-logo">
                 <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>بیمه پاسارگاد</h3>
-            <p>ارائه دهنده بیمه عمر مبتنی بر طلا با بیشترین سود مشارکت و پوشش‌های تکمیلی</p>
+            <h3 style="color: var(--primary-gold); margin-bottom: 1rem;">بیمه پاسارگاد</h3>
+            <p style="color: var(--text-gray); line-height: 1.8;">ارائه دهنده بیمه عمر مبتنی بر طلا با بیشترین سود مشارکت و پوشش‌های تکمیلی</p>
         </div>
         
         <div class="footer-links">
@@ -949,6 +1457,11 @@
     </div>
 </footer>
 
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
 <script>
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -969,6 +1482,86 @@
         });
     });
     
+    // Create Gold Particles
+    function createGoldParticles() {
+        const container = document.getElementById('goldParticles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('gold-particle');
+            
+            // Random properties
+            const size = Math.random() * 4 + 1;
+            const duration = Math.random() * 20 + 10;
+            const delay = Math.random() * 20;
+            const left = Math.random() * 100;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}%`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(particle);
+        }
+    }
+    
+    // Create Gold Bars Rain
+    function createGoldBarRain() {
+        const container = document.getElementById('goldBarRain');
+        const barCount = 15;
+        
+        for (let i = 0; i < barCount; i++) {
+            const bar = document.createElement('div');
+            bar.classList.add('gold-bar');
+            
+            // Random properties
+            const left = Math.random() * 100;
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 15;
+            const size = Math.random() * 20 + 30;
+            const height = Math.random() * 5 + 8;
+            
+            bar.style.left = `${left}%`;
+            bar.style.width = `${size}px`;
+            bar.style.height = `${height}px`;
+            bar.style.animationDuration = `${duration}s`;
+            bar.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(bar);
+        }
+    }
+    
+    // Create Floating Coins
+    function createFloatingCoins() {
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            if (section.id !== 'home') {
+                const coinCount = 5;
+                for (let i = 0; i < coinCount; i++) {
+                    const coin = document.createElement('div');
+                    coin.classList.add('floating-coin');
+                    
+                    const top = Math.random() * 80 + 10;
+                    const left = Math.random() * 80 + 10;
+                    const delay = Math.random() * 5;
+                    const duration = Math.random() * 5 + 5;
+                    
+                    coin.style.top = `${top}%`;
+                    coin.style.left = `${left}%`;
+                    coin.style.animationDelay = `${delay}s`;
+                    coin.style.animationDuration = `${duration}s`;
+                    coin.style.opacity = '0.3';
+                    coin.style.width = '20px';
+                    coin.style.height = '20px';
+                    
+                    section.appendChild(coin);
+                }
+            }
+        });
+    }
+    
     // Counter Animation
     let sales = 0;
     const targetSales = 800; // میلیارد
@@ -976,7 +1569,7 @@
     
     function updateSales() {
         if(sales < targetSales){
-            const increment = Math.max(targetSales/200, 1);
+            const increment = Math.max(targetSales/150, 1);
             sales += increment;
             if(sales > targetSales) sales = targetSales;
             
@@ -985,9 +1578,6 @@
             requestAnimationFrame(updateSales);
         }
     }
-    
-    // Start counter animation
-    setTimeout(updateSales, 1000);
     
     // Chart.js
     const ctx = document.getElementById('profitChart').getContext('2d');
@@ -999,14 +1589,18 @@
                 label: 'سود مشارکت (میلیارد تومان)',
                 data: [800, 950, 1200, 1600, 2000],
                 borderColor: '#FFD700',
-                backgroundColor: 'rgba(255, 215, 0, 0.1)',
-                borderWidth: 3,
+                backgroundColor: 'rgba(255, 215, 0, 0.15)',
+                borderWidth: 4,
                 tension: 0.4,
                 fill: true,
-                pointRadius: 6,
+                pointRadius: 8,
                 pointBackgroundColor: '#FFD700',
                 pointBorderColor: '#000',
-                pointBorderWidth: 2
+                pointBorderWidth: 2,
+                pointHoverRadius: 10,
+                pointHoverBackgroundColor: '#FFEC8B',
+                pointHoverBorderColor: '#FFD700',
+                pointHoverBorderWidth: 3
             }]
         },
         options: {
@@ -1017,7 +1611,23 @@
                         color: '#FFD700',
                         font: {
                             size: 14,
-                            family: 'Sahel'
+                            family: 'Sahel',
+                            weight: 'bold'
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#FFD700',
+                    bodyColor: '#FFFFFF',
+                    borderColor: '#FFD700',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    rtl: true,
+                    callbacks: {
+                        label: function(context) {
+                            return `سود: ${context.parsed.y} میلیارد تومان`;
                         }
                     }
                 }
@@ -1025,7 +1635,11 @@
             scales: {
                 x: {
                     ticks: {
-                        color: '#FFD700'
+                        color: '#FFD700',
+                        font: {
+                            size: 13,
+                            family: 'Sahel'
+                        }
                     },
                     grid: {
                         color: 'rgba(255, 215, 0, 0.1)'
@@ -1034,6 +1648,10 @@
                 y: {
                     ticks: {
                         color: '#FFD700',
+                        font: {
+                            size: 13,
+                            family: 'Sahel'
+                        },
                         callback: function(value) {
                             return value + ' میلیارد';
                         }
@@ -1049,8 +1667,106 @@
     // Form Submission
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('درخواست مشاوره شما با موفقیت ثبت شد. کارشناسان ما در اولین فرصت با شما تماس خواهند گرفت.');
-        this.reset();
+        
+        // Create gold effect on form submission
+        const form = this;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+            // Create success animation
+            const goldEffect = document.createElement('div');
+            goldEffect.style.position = 'fixed';
+            goldEffect.style.top = '50%';
+            goldEffect.style.left = '50%';
+            goldEffect.style.transform = 'translate(-50%, -50%)';
+            goldEffect.style.width = '100px';
+            goldEffect.style.height = '100px';
+            goldEffect.style.background = 'radial-gradient(circle, #FFD700, transparent)';
+            goldEffect.style.borderRadius = '50%';
+            goldEffect.style.zIndex = '9999';
+            goldEffect.style.animation = 'fadeOut 1s forwards';
+            
+            document.body.appendChild(goldEffect);
+            
+            // Add fadeOut animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            alert('درخواست مشاوره شما با موفقیت ثبت شد. کارشناسان ما در اولین فرصت با شما تماس خواهند گرفت.');
+            
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            form.reset();
+            
+            // Remove gold effect after animation
+            setTimeout(() => {
+                goldEffect.remove();
+                style.remove();
+            }, 1000);
+            
+        }, 1500);
+    });
+    
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Initialize all animations
+    document.addEventListener('DOMContentLoaded', function() {
+        createGoldParticles();
+        createGoldBarRain();
+        createFloatingCoins();
+        
+        // Start counter after a delay
+        setTimeout(updateSales, 1000);
+        
+        // Add scroll animation to cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe cards for animation
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
     });
 </script>
 
