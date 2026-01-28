@@ -5,7 +5,7 @@ new Chart(ctx, {
     data: {
         labels: ['1402', '1404'],
         datasets: [{
-            label: '”Êœ „‘«—ò  œ— „‰«›⁄ („Ì·Ì«—œ  Ê„«‰)',
+            label: '√ì√¶√è √£√î√á√ëÀú√ä √è√ë √£√§√á√ù√ö (√£√≠√°√≠√á√ë√è √ä√¶√£√á√§)',
             data: [1200, 2000],
             borderColor: 'gold',
             backgroundColor: 'rgba(255,215,0,0.2)',
