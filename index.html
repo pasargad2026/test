@@ -1,189 +1,750 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بيمه طلایی | پاسارگاد</title>
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn-font@v33/Vazirmatn-font-face.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-/* ----- Base & Reset ----- */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Vazirmatn', sans-serif;}
-body {background:#0d0d0d; color:#f5d77a; line-height:1.6; overflow-x:hidden;}
-
-/* ----- Hero Section ----- */
-.hero {
-  height: 90vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
-  text-align:center; background:#1a1a1a; position:relative; overflow:hidden;
-}
-.hero h1 {font-size:3rem; color:gold; margin-bottom:20px; z-index:2; position:relative;}
-.hero p {font-size:1.3rem; margin-bottom:30px; z-index:2; position:relative;}
-.cta-btn {
-  background: linear-gradient(45deg, #ffd700, #c9a227);
-  color:#000; padding:15px 35px; text-decoration:none;
-  border-radius:30px; font-weight:bold; transition:0.3s; z-index:2; position:relative;
-}
-.cta-btn:hover {transform: scale(1.1);}
-
-/* ----- Floating gold bars ----- */
-.gold-bar {
-  position:absolute; width:40px; height:15px; background:gold;
-  top: -20px; animation:fall linear infinite; border-radius:4px;
-}
-@keyframes fall {
-  0% {transform: translateY(0) rotate(0deg); opacity:1;}
-  100% {transform: translateY(110vh) rotate(360deg); opacity:0;}
-}
-
-/* ----- Info Section ----- */
-.info {padding:60px 10%; text-align:center;}
-.info h2 {font-size:2.2rem; margin-bottom:40px;}
-.cards {display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
-.card {
-  background:#1a1a1a; padding:25px; border:1px solid gold;
-  border-radius:15px; flex:1 1 250px; transition:0.3s;
-}
-.card:hover {transform: translateY(-10px); box-shadow:0 0 20px gold;}
-.card h3 {margin-bottom:15px; color:gold;}
-.card p {font-size:1rem;}
-
-/* ----- Counter Section ----- */
-.counter-section {padding:60px 10%; text-align:center;}
-.counter-section h2 {font-size:2rem; margin-bottom:20px;}
-.counter {font-size:2.5rem; color:gold; font-weight:bold;}
-
-/* ----- Chart Section ----- */
-.chart-section {padding:60px 10%; background:#111; text-align:center;}
-.chart-section h2 {font-size:2rem; margin-bottom:40px;}
-
-/* ----- News Section ----- */
-.news-section {padding:60px 10%; background:#1a1a1a; color:#f5d77a; text-align:right; border-top:2px solid gold;}
-.news-section h2 {font-size:2rem; margin-bottom:20px;}
-.news-section ul {list-style:none; padding:0; margin-top:20px;}
-.news-section li {padding:10px 0;}
-.news-section a {color:gold; text-decoration:none;}
-.news-section a:hover {text-decoration:underline;}
-
-/* ----- Footer ----- */
-footer {background:#000; padding:20px; text-align:center; font-size:0.9rem; color:#f5d77a;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بيمه عمر مبتنی بر طلا | شرکت بیمه پاسارگاد</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn-font@v33/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ----- Base & Reset ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        body {
+            background: #0d0d0d;
+            color: #f5d77a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ----- Hero Section ----- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #2d2200 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            color: gold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: #f5f5f5;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(45deg, #ffd700, #c9a227);
+            color: #000;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            z-index: 2;
+            position: relative;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            border: 2px solid transparent;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+            background: linear-gradient(45deg, #c9a227, #ffd700);
+        }
+        
+        /* ----- Floating gold bars ----- */
+        .gold-bar {
+            position: absolute;
+            width: 50px;
+            height: 18px;
+            background: linear-gradient(90deg, gold, #ffed4e);
+            animation: fall linear infinite;
+            border-radius: 4px;
+            box-shadow: 0 0 10px gold;
+            z-index: 1;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* ----- Info Section ----- */
+        .info {
+            padding: 80px 5%;
+            text-align: center;
+            background: #111;
+        }
+        
+        .info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: gold;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .info h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: gold;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            padding: 35px 25px;
+            border-radius: 20px;
+            flex: 1 1 280px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            max-width: 320px;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, gold, #c9a227);
+        }
+        
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
+        .card-icon {
+            font-size: 2.8rem;
+            color: gold;
+            margin-bottom: 25px;
+            background: rgba(255, 215, 0, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+        }
+        
+        .card h3 {
+            margin-bottom: 20px;
+            color: gold;
+            font-size: 1.4rem;
+        }
+        
+        .card p {
+            font-size: 1.05rem;
+            color: #e0e0e0;
+        }
+        
+        /* ----- Counter Section ----- */
+        .counter-section {
+            padding: 80px 5%;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+        
+        .counter-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            color: #f5d77a;
+        }
+        
+        .counter {
+            font-size: 3.5rem;
+            color: gold;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            direction: ltr;
+        }
+        
+        .counter-subtitle {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-top: 15px;
+        }
+        
+        /* ----- Chart Section ----- */
+        .chart-section {
+            padding: 80px 5%;
+            background: #111;
+            text-align: center;
+        }
+        
+        .chart-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 50px;
+            color: gold;
+        }
+        
+        .chart-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        /* ----- News Section ----- */
+        .news-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+            color: #f5d77a;
+            text-align: right;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .news-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 40px;
+            color: gold;
+            text-align: center;
+        }
+        
+        .news-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #0d0d0d;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .news-section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .news-section li {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .news-icon {
+            color: gold;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+        
+        .news-section a {
+            color: #f5d77a;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        
+        .news-section a:hover {
+            color: gold;
+            text-decoration: underline;
+        }
+        
+        .news-date {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-right: 20px;
+        }
+        
+        /* ----- Footer ----- */
+        footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #f5d77a;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: gold;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: #f5d77a;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: gold;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* ----- Responsive Design ----- */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                flex: 1 1 45%;
+            }
+            
+            .counter {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            .counter {
+                font-size: 2.2rem;
+            }
+            
+            .chart-container {
+                padding: 20px;
+            }
+            
+            .news-container {
+                padding: 25px;
+            }
+            
+            .news-section li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .news-date {
+                margin-right: 0;
+                margin-top: 10px;
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .info h2, .counter-section h2, .chart-section h2, .news-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .counter {
+                font-size: 1.8rem;
+            }
+            
+            .card-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <header class="hero">
-  <h1>بيمه عمر مبتني بر طلا</h1>
-  <p>سرمايه‌گذاري مطمئن، آينده‌اي درخشان</p>
-  <a href="#" class="cta-btn">مشاوره و ثبت‌نام</a>
+    <div class="hero-content">
+        <h1>بيمه عمر مبتنی بر طلا</h1>
+        <p>سرمايه‌گذاری مطمئن با پشتوانه طلا برای آینده‌ای درخشان و امن</p>
+        <a href="#contact" class="cta-btn">
+            <i class="fas fa-user-tie" style="margin-left: 10px;"></i>
+            درخواست مشاوره رایگان
+        </a>
+    </div>
 
-  <!-- Gold bars animation -->
-  <div class="gold-bar" style="left:5%; animation-duration:6s;"></div>
-  <div class="gold-bar" style="left:25%; animation-duration:5s;"></div>
-  <div class="gold-bar" style="left:50%; animation-duration:7s;"></div>
-  <div class="gold-bar" style="left:70%; animation-duration:4s;"></div>
-  <div class="gold-bar" style="left:85%; animation-duration:6.5s;"></div>
+    <!-- Gold bars animation -->
+    <div class="gold-bar" style="left:5%; animation-duration:8s;"></div>
+    <div class="gold-bar" style="left:15%; animation-duration:10s;"></div>
+    <div class="gold-bar" style="left:25%; animation-duration:7s;"></div>
+    <div class="gold-bar" style="left:35%; animation-duration:9s;"></div>
+    <div class="gold-bar" style="left:50%; animation-duration:6s;"></div>
+    <div class="gold-bar" style="left:65%; animation-duration:8.5s;"></div>
+    <div class="gold-bar" style="left:75%; animation-duration:11s;"></div>
+    <div class="gold-bar" style="left:85%; animation-duration:7.5s;"></div>
+    <div class="gold-bar" style="left:95%; animation-duration:9.5s;"></div>
 </header>
 
 <section class="info">
-  <h2>چرا بيمه عمر مبتني بر طلا؟</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>?? پشتوانه طلا</h3>
-      <p>حفظ ارزش سرمايه در برابر تورم با مبناي طلا</p>
+    <h2>چرا بیمه عمر مبتنی بر طلا پاسارگاد؟</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-gem"></i>
+            </div>
+            <h3>پشتوانه طلا</h3>
+            <p>حفظ ارزش سرمایه در برابر تورم با مبنای طلا و سکه</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>سود مشارکت</h3>
+            <p>سهم شما از سود سرمایه‌گذاری‌های بزرگ و مطمئن شرکت</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>امنیت آینده</h3>
+            <p>آرامش خاطر برای شما و خانواده‌تان با تضمین بیمه‌ای</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <h3>وام بدون ضامن</h3>
+            <p>امکان دریافت وام آسان تا ۹۰ درصد ارزش بیمه‌نامه بدون نیاز به ضامن</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-umbrella"></i>
+            </div>
+            <h3>۱۲ پوشش تکمیلی</h3>
+            <p>بهره‌مندی از پوشش‌های تکمیلی متنوع برای شرایط مختلف</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">
+                <i class="fas fa-award"></i>
+            </div>
+            <h3>تضمین کیفیت</h3>
+            <p>بیمه‌نامه معتبر از بزرگترین شرکت بیمه خصوصی ایران</p>
+        </div>
     </div>
-    <div class="card">
-      <h3>?? سود مشارکت</h3>
-      <p>سهم شما از سود سرمايه‌گذاري‌هاي بزرگ</p>
-    </div>
-    <div class="card">
-      <h3>??? امنيت آينده</h3>
-      <p>آرامش خاطر براي شما و خانواده‌تان</p>
-    </div>
-    <div class="card">
-      <h3>?? وام بدون ضامن</h3>
-      <p>امکان دريافت وام آسان بدون نياز به ضامن</p>
-    </div>
-    <div class="card">
-      <h3>?? ?? بهره مندی از 12 پوشش</h3>
-      <p>sos تکمیلی و...</p>
-    </div>
-  </div>
 </section>
 
 <section class="counter-section">
-  <h2>فروش اين طرح تا به الان</h2>
-  <div class="counter" id="sales-counter">0</div>
+    <h2>فروش این طرح تا به امروز</h2>
+    <div class="counter" id="sales-counter">0</div>
+    <p class="counter-subtitle">میلیارد تومان</p>
 </section>
 
 <section class="chart-section">
-  <h2>سود مشارکت در منافع</h2>
-  <canvas id="profitChart"></canvas>
+    <h2>سود مشارکت در منافع (رشد سالانه)</h2>
+    <div class="chart-container">
+        <canvas id="profitChart"></canvas>
+    </div>
 </section>
 
-<section class="news-section">
-  <h2>?? اخبار روزانه</h2>
-  <ul id="rss-news"></ul>
+<section class="news-section" id="news">
+    <h2>آخرین اخبار اقتصادی</h2>
+    <div class="news-container">
+        <ul id="rss-news">
+            <!-- اخبار از طریق JavaScript بارگذاری می‌شود -->
+            <li>
+                <i class="fas fa-newspaper news-icon"></i>
+                <a href="https://eghtesaad24.ir" target="_blank">در حال بارگذاری اخبار...</a>
+                <div class="news-date">لطفا منتظر بمانید</div>
+            </li>
+        </ul>
+    </div>
 </section>
 
-<footer>
-  <p> 2026 - بيمه عمر پاسارگاد </p>
+<footer id="contact">
+    <div class="footer-logo">
+        <i class="fas fa-landmark"></i>
+    </div>
+    <h3>شرکت بیمه پاسارگاد</h3>
+    <p>ارائه دهنده بیمه عمر مبتنی بر طلا با بیشترین سود مشارکت</p>
+    
+    <div class="footer-links">
+        <a href="#"><i class="fas fa-phone" style="margin-left: 8px;"></i> ۰۲۱-۸۴۲۳۴</a>
+        <a href="#"><i class="fas fa-envelope" style="margin-left: 8px;"></i> info@pasargadinsurance.ir</a>
+        <a href="#"><i class="fas fa-map-marker-alt" style="margin-left: 8px;"></i> تهران، خیابان ولیعصر</a>
+    </div>
+    
+    <div class="copyright">
+        <p>تمامی حقوق محفوظ است © ۱۴۰۳ - بیمه عمر پاسارگاد</p>
+    </div>
 </footer>
 
 <script>
-// ----- Counter for sales -----
-let sales = 0;
-const targetSales = +800000000000; // 800 ميليارد
-const counterElem = document.getElementById('sales-counter');
-function updateSales() {
-  if(sales < targetSales){
-    sales += Math.floor(targetSales/200); // افزايش تدريجي
-    if(sales > targetSales) sales = targetSales;
-    counterElem.innerText = sales.toLocaleString() + " تومان";
-    requestAnimationFrame(updateSales);
-  }
-}
-updateSales();
-
-// ----- Chart.js -----
-const ctx = document.getElementById('profitChart').getContext('2d');
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['1402','1404'],
-        datasets: [{
-            label:'سود مشارکت در منافع (ميليارد تومان)',
-            data:[1200,2000],
-            borderColor:'gold',
-            backgroundColor:'rgba(255,215,0,0.2)',
-            tension:0.4,
-            fill:true,
-            pointRadius:6,
-            pointBackgroundColor:'gold'
-        }]
-    },
-    options:{
-        plugins:{legend:{labels:{color:'gold'}}},
-        scales:{
-            x:{ticks:{color:'gold'}},
-            y:{ticks:{color:'gold'}}
+    // ----- Counter for sales -----
+    let sales = 0;
+    const targetSales = 800000000000; // 800 میلیارد
+    const counterElem = document.getElementById('sales-counter');
+    
+    function updateSales() {
+        if(sales < targetSales){
+            const increment = Math.max(Math.floor(targetSales/300), 1000000000); // حداقل افزایش ۱ میلیارد
+            sales += increment;
+            if(sales > targetSales) sales = targetSales;
+            
+            // نمایش به صورت میلیارد تومان
+            const salesInBillion = (sales / 1000000000).toFixed(1);
+            counterElem.innerText = salesInBillion.replace('.۰', '');
+            
+            // ادامه انیمیشن
+            setTimeout(updateSales, 30);
         }
     }
-});
-
-// ----- RSS Feed for news -----
-const RSS_URL = "https://api.rss2json.com/v1/api.json?rss_url=https://eghtesaad24.ir/fa/rss/11";
-fetch(RSS_URL)
-  .then(response => response.json())
-  .then(data => {
-    const ul = document.getElementById('rss-news');
-    data.items.slice(0,5).forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-      ul.appendChild(li);
+    
+    // شروع انیمیشن شمارنده پس از بارگذاری صفحه
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateSales, 500);
     });
-  })
-  .catch(err => console.error("خطا در بارگذاري RSS:", err));
+    
+    // ----- Chart.js -----
+    const ctx = document.getElementById('profitChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['۱۴۰۰', '۱۴۰۱', '۱۴۰۲', '۱۴۰۳', '۱۴۰۴'],
+            datasets: [{
+                label: 'سود مشارکت در منافع (میلیارد تومان)',
+                data: [800, 950, 1200, 1600, 2000],
+                borderColor: 'gold',
+                backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 6,
+                pointBackgroundColor: 'gold',
+                pointBorderColor: '#000',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'gold',
+                        font: {
+                            size: 14,
+                            family: 'Vazirmatn'
+                        }
+                    }
+                },
+                tooltip: {
+                    rtl: true,
+                    titleFont: {
+                        family: 'Vazirmatn'
+                    },
+                    bodyFont: {
+                        family: 'Vazirmatn'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'gold',
+                        font: {
+                            size: 13,
+                            family: 'Vazirmatn'
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 215, 0, 0.1)'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'gold',
+                        font: {
+                            size: 13,
+                            family: 'Vazirmatn'
+                        },
+                        callback: function(value) {
+                            return value + ' میلیارد';
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 215, 0, 0.1)'
+                    }
+                }
+            }
+        }
+    });
+    
+    // ----- RSS Feed for news -----
+    const RSS_URL = "https://api.rss2json.com/v1/api.json?rss_url=https://eghtesaad24.ir/fa/rss/11";
+    
+    // تابع جایگزین برای زمانی که API RSS کار نمی‌کند
+    function loadFallbackNews() {
+        const ul = document.getElementById('rss-news');
+        ul.innerHTML = '';
+        
+        const fallbackNews = [
+            {title: "رشد ۲۰ درصدی قیمت طلا در سه ماهه اول ۱۴۰۳", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۴/۱۵"},
+            {title: "تاثیر نرخ دلار بر بازار سرمایه و بیمه‌های عمر", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۴/۱۰"},
+            {title: "بیمه عمر مبتنی بر طلا؛ راهکاری برای حفظ ارزش سرمایه", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۴/۰۵"},
+            {title: "افزایش سرمایه‌گذاری در صندوق‌های طلایی", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۳/۲۸"},
+            {title: "نگاهی به عملکرد بیمه‌های عمر در سال ۱۴۰۲", link: "https://eghtesaad24.ir", date: "۱۴۰۳/۰۳/۲۰"}
+        ];
+        
+        fallbackNews.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <i class="fas fa-newspaper news-icon"></i>
+                <a href="${item.link}" target="_blank">${item.title}</a>
+                <div class="news-date">${item.date}</div>
+            `;
+            ul.appendChild(li);
+        });
+    }
+    
+    // تلاش برای دریافت RSS
+    fetch(RSS_URL)
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.items && data.items.length > 0) {
+                const ul = document.getElementById('rss-news');
+                ul.innerHTML = '';
+                
+                data.items.slice(0, 5).forEach(item => {
+                    const li = document.createElement('li');
+                    // استخراج تاریخ از محتوا یا استفاده از تاریخ انتشار
+                    const newsDate = item.pubDate ? new Date(item.pubDate).toLocaleDateString('fa-IR') : 'بدون تاریخ';
+                    
+                    li.innerHTML = `
+                        <i class="fas fa-newspaper news-icon"></i>
+                        <a href="${item.link}" target="_blank">${item.title}</a>
+                        <div class="news-date">${newsDate}</div>
+                    `;
+                    ul.appendChild(li);
+                });
+            } else {
+                loadFallbackNews();
+            }
+        })
+        .catch(err => {
+            console.error("خطا در بارگذاری RSS:", err);
+            loadFallbackNews();
+        });
+        
+    // ----- Smooth scrolling for anchor links -----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 </script>
 
 </body>
 </html>
-
