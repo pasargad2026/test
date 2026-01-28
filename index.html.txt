@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>»нге Џг— г» дн »— Ўб« | Б«”«—Р«ѕ</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header class="hero">
+    <div class="overlay">
+        <h1>»нге Џг— г» дн »— Ўб«</h1>
+        <p>”—г«неЭР–«—н гЎг∆д° ¬ндѕеЭ«н ѕ—ќ‘«д</p>
+        <a href="#" class="cta-btn">г‘«ж—е ж Ћ» Эд«г</a>
+    </div>
+</header>
+
+<section class="info">
+    <h2>Н—« »нге Џг— г» дн »— Ўб«њ</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>?? Б‘ ж«де Ўб«</h3>
+            <p>ЌЁў «—“‘ ”—г«не ѕ— »—«»—  ж—г »« г»д«н Ўб«</p>
+        </div>
+        <div class="card">
+            <h3>?? ”жѕ г‘«—Ш </h3>
+            <p>”ег ‘г« «“ ”жѕ ”—г«неЭР–«—нЭе«н »“—Р</p>
+        </div>
+        <div class="card">
+            <h3>??? «гдн  ¬ндѕе</h3>
+            <p>¬—«г‘ ќ«Ў— »—«н ‘г« ж ќ«дж«ѕеЭ «д</p>
+        </div>
+    </div>
+</section>
+
+<section class="chart-section">
+    <h2>”жѕ г‘«—Ш  ѕ— гд«ЁЏ</h2>
+    <canvas id="profitChart"></canvas>
+</section>
+
+<footer>
+    <p>© 2026 - »нге Џг— Б«”«—Р«ѕ | Ў—«Ќн »«  г Ўб«нн</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

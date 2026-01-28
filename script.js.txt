@@ -1,0 +1,35 @@
+const ctx = document.getElementById('profitChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['1402', '1404'],
+        datasets: [{
+            label: '”Êœ „‘«—ò  œ— „‰«›⁄ („Ì·Ì«—œ  Ê„«‰)',
+            data: [1200, 2000],
+            borderColor: 'gold',
+            backgroundColor: 'rgba(255,215,0,0.2)',
+            tension: 0.4,
+            fill: true,
+            pointRadius: 6,
+            pointBackgroundColor: 'gold'
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'gold'
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: 'gold' }
+            },
+            y: {
+                ticks: { color: 'gold' }
+            }
+        }
+    }
+});
