@@ -324,6 +324,77 @@
             background: rgba(255, 215, 0, 0.1);
         }
         
+        /* ----- Rotating Gold Ingot ----- */
+        .rotating-ingot {
+            position: absolute;
+            width: 180px;
+            height: 60px;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            opacity: 0.7;
+        }
+        
+        .gold-ingot {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                #FFD700 0%,
+                #FFEC8B 25%,
+                #FFD700 50%,
+                #E6BE00 75%,
+                #FFD700 100%
+            );
+            border-radius: 8px 25px 25px 8px;
+            position: relative;
+            animation: rotateIngot 15s infinite linear;
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.6),
+                inset 0 0 30px rgba(255, 255, 255, 0.4);
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes rotateIngot {
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(180deg) scale(1.05); }
+            100% { transform: rotateY(360deg) scale(1); }
+        }
+        
+        .gold-ingot::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            width: 45%;
+            height: 70%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            border-radius: 4px;
+            animation: shine 3s infinite alternate;
+            filter: blur(1px);
+        }
+        
+        .gold-ingot::after {
+            content: '۱ کیلو';
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transform: rotateY(180deg);
+        }
+        
+        @keyframes shine {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
+        }
+        
         /* ----- Gold Bar Rain ----- */
         .gold-bar-rain {
             position: absolute;
@@ -601,7 +672,7 @@
         }
         
         .counter {
-            font-size: 5.5rem;
+            font-size: 3.5rem; /* اندازه فونت کاهش یافت تا عدد کامل جا شود */
             color: var(--primary-gold);
             font-weight: 900;
             text-shadow: 
@@ -616,6 +687,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: counterPulse 2s infinite alternate;
+            letter-spacing: 1px; /* فاصله بین ارقام کمی افزایش یافت */
         }
         
         @keyframes counterPulse {
@@ -664,13 +736,6 @@
             border-radius: 15px;
             border: 1px solid rgba(255, 215, 0, 0.1);
             text-align: center;
-            transition: all 0.3s;
-        }
-        
-        .growth-stat:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
         .growth-stat i {
@@ -691,10 +756,82 @@
             font-weight: 800;
         }
         
+        /* ----- 12 Coverage Section ----- */
+        .coverage-section {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coverage-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .coverage-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .coverage-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .coverage-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .coverage-content h4 {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .coverage-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
         /* ----- FAQ Section ----- */
         .faq-section {
             padding: 6rem 5%;
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section) 100%);
+            background: var(--bg-section);
             position: relative;
             overflow: hidden;
         }
@@ -815,7 +952,7 @@
         /* ----- Hospitals Section ----- */
         .hospitals-section {
             padding: 6rem 5%;
-            background: var(--bg-section);
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -1074,12 +1211,22 @@
                 font-size: 3rem;
             }
             
+            .rotating-ingot {
+                width: 140px;
+                height: 50px;
+                right: 5%;
+            }
+            
             .section-header h2 {
                 font-size: 2.5rem;
             }
             
             .counter {
-                font-size: 4rem;
+                font-size: 2.8rem;
+            }
+            
+            .coverage-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -1122,6 +1269,10 @@
                 font-size: 1.3rem;
             }
             
+            .rotating-ingot {
+                display: none;
+            }
+            
             .cta-buttons {
                 justify-content: center;
             }
@@ -1131,7 +1282,7 @@
             }
             
             .counter {
-                font-size: 3rem;
+                font-size: 2.2rem;
             }
             
             .counter-container {
@@ -1143,14 +1294,15 @@
                 gap: 3rem;
             }
             
-            .faq-container,
-            .hospitals-container,
-            .gold-growth-container {
-                padding: 2rem 1.5rem;
+            .coverage-grid {
+                grid-template-columns: 1fr;
             }
             
-            .gold-growth-info {
-                grid-template-columns: repeat(2, 1fr);
+            .faq-container,
+            .hospitals-container,
+            .gold-growth-container,
+            .coverage-container {
+                padding: 2rem 1.5rem;
             }
             
             .back-to-top {
@@ -1182,7 +1334,7 @@
             }
             
             .counter {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
             
             .card {
@@ -1193,14 +1345,6 @@
                 width: 70px;
                 height: 70px;
                 font-size: 2.5rem;
-            }
-            
-            .gold-growth-info {
-                grid-template-columns: 1fr;
-            }
-            
-            .growth-stat p {
-                font-size: 1.7rem;
             }
             
             .faq-question h4 {
@@ -1248,7 +1392,8 @@
         <a href="#home">خانه</a>
         <a href="#features">مزایا</a>
         <a href="#statistics">آمار</a>
-        <a href="#gold-growth">رشد طلا</a>
+        <a href="#coverage">پوشش‌ها</a>
+        <a href="#gold-growth">سود مشارکت</a>
         <a href="#faq">سوالات متداول</a>
         <a href="#hospitals">بیمارستان‌ها</a>
         <a href="#contact">تماس</a>
@@ -1258,6 +1403,10 @@
 <!-- Hero Section -->
 <section class="hero" id="home">
     <div class="gold-bar-rain" id="goldBarRain"></div>
+    
+    <div class="rotating-ingot">
+        <div class="gold-ingot"></div>
+    </div>
     
     <div class="hero-content">
         <h1>بیمه عمر <span class="highlight">مبتنی بر طلا</span></h1>
@@ -1271,7 +1420,7 @@
             </a>
             <a href="#gold-growth" class="cta-btn secondary">
                 <i class="fas fa-chart-line"></i>
-                نمودار رشد طلا
+                سود مشارکت پاسارگاد
             </a>
         </div>
     </div>
@@ -1339,8 +1488,8 @@
             <div class="card-icon">
                 <i class="fas fa-umbrella"></i>
             </div>
-            <h3>بهره مندی از 12 پوشش</h3>
-            <p> شامل تکمیلی sos ، آتش‌سوزی و سایر پوشش‌ها</p>
+            <h3>بهره‌مندی از ۱۲ پوشش تکمیلی</h3>
+            <p>پوشش‌های متنوع شامل SOS تکمیلی، آتش‌سوزی، فوت و...</p>
             <div class="card-gold-corner">
                 <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
             </div>
@@ -1365,15 +1514,147 @@
         <h2 style="font-size: 2.5rem; color: var(--text-light); margin-bottom: 1rem;">فروش موفق این طرح</h2>
         <p style="font-size: 1.3rem; color: var(--text-gray);">تا امروز بیش از</p>
         <div class="counter" id="sales-counter">0</div>
-        <p class="counter-subtitle">میلیارد تومان بیمه عمر طلایی فروخته شده است</p>
+        <p class="counter-subtitle">تومان بیمه عمر طلایی فروخته شده است</p>
     </div>
 </section>
 
-<!-- Gold Growth Chart Section -->
+<!-- 12 Coverage Section -->
+<section class="coverage-section" id="coverage">
+    <div class="section-header">
+        <h2>۱۲ پوشش تکمیلی بیمه عمر طلایی</h2>
+        <p>بهترین و کامل‌ترین پوشش‌های بیمه‌ای برای آرامش شما</p>
+    </div>
+    
+    <div class="coverage-container">
+        <div class="coverage-grid">
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-phone-square-alt"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>SOS تکمیلی</h4>
+                    <p>خدمات اضطراری ۲۴ ساعته شامل اورژانس، آمبولانس و خدمات پزشکی</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>آتش‌سوزی</h4>
+                    <p>پوشش کامل خسارات ناشی از آتش‌سوزی و انفجار</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-user-injured"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>فوت به هر علت</h4>
+                    <p>پرداخت کامل سرمایه بیمه به بازماندگان در صورت فوت بیمه‌شده</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-car-crash"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>حوادث رانندگی</h4>
+                    <p>پوشش کامل خسارات جانی و مالی ناشی از تصادفات رانندگی</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-house-damage"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>زلزله و سیل</h4>
+                    <p>پوشش خسارات ناشی از بلایای طبیعی مانند زلزله و سیل</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-procedures"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>بستری در بیمارستان</h4>
+                    <p>پرداخت هزینه‌های بستری و درمان در بیمارستان</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-wheelchair"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>از کارافتادگی دائم</h4>
+                    <p>پرداخت سرمایه در صورت از کارافتادگی کامل و دائم</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-briefcase-medical"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>جراحی‌های خاص</h4>
+                    <p>پوشش هزینه‌های عمل‌های جراحی مهم و پر هزینه</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>بیماری‌های خاص</h4>
+                    <p>پوشش بیماری‌های خطرناک مانند سرطان، سکته قلبی و مغزی</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>جراحی‌های انتخابی</h4>
+                    <p>پوشش عمل‌های جراحی انتخابی و زیبایی پزشکی</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>حوادث مسافرتی</h4>
+                    <p>پوشش حوادث در سفرهای داخلی و خارجی</p>
+                </div>
+            </div>
+            
+            <div class="coverage-item">
+                <div class="coverage-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="coverage-content">
+                    <h4>هزینه تحصیل فرزندان</h4>
+                    <p>تأمین هزینه تحصیل فرزندان در صورت فوت بیمه‌گزار اصلی</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- سود مشارکت پاسارگاد Section -->
 <section class="gold-growth-section" id="gold-growth">
     <div class="section-header">
-        <h2>رشد تاریخی قیمت طلا در ایران</h2>
-        <p>نمودار رشد قیمت هر گرم طلای ۱۸ عیار در ۵ سال اخیر</p>
+        <h2>سود مشارکت بیمه پاسارگاد</h2>
+        <p>مبالغ سود مشارکت در سال‌های اخیر (میلیارد تومان)</p>
     </div>
     
     <div class="gold-growth-container">
@@ -1382,26 +1663,26 @@
         <div class="gold-growth-info">
             <div class="growth-stat">
                 <i class="fas fa-chart-line"></i>
-                <h4>رشد ۵ ساله</h4>
-                <p>+۴۵۰٪</p>
+                <h4>سود مشارکت ۱۴۰۲</h4>
+                <p>۱,۲۰۰</p>
             </div>
             
             <div class="growth-stat">
                 <i class="fas fa-coins"></i>
-                <h4>میانگین رشد سالانه</h4>
-                <p>+۵۲٪</p>
+                <h4>سود مشارکت ۱۴۰۳</h4>
+                <p>۲,۰۰۰</p>
             </div>
             
             <div class="growth-stat">
                 <i class="fas fa-shield-alt"></i>
-                <h4>تضمین بیمه</h4>
-                <p>۱۰۰٪</p>
+                <h4>رشد سالانه</h4>
+                <p>۶۷٪</p>
             </div>
             
             <div class="growth-stat">
                 <i class="fas fa-trophy"></i>
-                <h4>بهترین سرمایه‌گذاری</h4>
-                <p>رتبه ۱</p>
+                <h4>رتبه در صنعت بیمه</h4>
+                <p>۱</p>
             </div>
         </div>
     </div>
@@ -1611,7 +1892,8 @@
             <ul>
                 <li><a href="#home">خانه</a></li>
                 <li><a href="#features">مزایای بیمه</a></li>
-                <li><a href="#gold-growth">رشد طلا</a></li>
+                <li><a href="#coverage">پوشش‌ها</a></li>
+                <li><a href="#gold-growth">سود مشارکت</a></li>
                 <li><a href="#faq">سوالات متداول</a></li>
                 <li><a href="#hospitals">بیمارستان‌ها</a></li>
                 <li><a href="#contact">تماس با ما</a></li>
@@ -1631,7 +1913,7 @@
     </div>
     
     <div class="copyright">
-        <p>© ۱۴۰۴ - تمامی حقوق برای بیمه پاسارگاد محفوظ است | طراحی شده با ❤️</p>
+        <p>© ۱۴۰۳ - تمامی حقوق برای بیمه پاسارگاد محفوظ است | طراحی شده با ❤️</p>
     </div>
 </footer>
 
@@ -1740,9 +2022,9 @@
         });
     }
     
-    // Counter Animation - عدد 800,000,000,000 تومان
+    // Counter Animation - عدد 800,000,000,000 تومان با همه صفرها
     let sales = 0;
-    const targetSales = 800000000000; // 800,000,000,000 تومان
+    const targetSales = 800000000000; // 800 میلیارد تومان
     const counterElem = document.getElementById('sales-counter');
     
     function updateSales() {
@@ -1751,9 +2033,9 @@
             sales += increment;
             if(sales > targetSales) sales = targetSales;
             
-            // نمایش عدد 800,000,000,000 به صورت 800,000 میلیون تومان (800,000,000,000 میلیارد)
-            const salesInBillion = (sales / 1000000000).toFixed(0);
-            counterElem.innerText = salesInBillion.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            // نمایش عدد کامل با جداکننده هزارگان فارسی
+            const formattedSales = sales.toLocaleString('fa-IR');
+            counterElem.innerText = formattedSales;
             
             requestAnimationFrame(updateSales);
         }
@@ -1780,28 +2062,26 @@
         });
     }
     
-    // Gold Growth Chart - قیمت واقعی هر گرم طلای 18 عیار
+    // نمودار سود مشارکت پاسارگاد
     const goldCtx = document.getElementById('goldGrowthChart').getContext('2d');
     new Chart(goldCtx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['۱۴۰۰', '۱۴۰۱', '۱۴۰۲', '۱۴۰۳', '۱۴۰۴'],
+            labels: ['۱۴۰۰', '۱۴۰۱', '۱۴۰۲', '۱۴۰۳'],
             datasets: [{
-                label: 'قیمت هر گرم طلای ۱۸ عیار (هزار تومان)',
-                data: [1200, 1800, 2500, 3500, 5200], // قیمت‌های واقعی‌تر
+                label: 'سود مشارکت بیمه پاسارگاد (میلیارد تومان)',
+                data: [600, 850, 1200, 2000],
+                backgroundColor: [
+                    'rgba(255, 215, 0, 0.7)',
+                    'rgba(255, 215, 0, 0.7)',
+                    'rgba(255, 215, 0, 0.7)',
+                    'rgba(255, 215, 0, 0.9)' // سال ۱۴۰۳ پررنگ‌تر
+                ],
                 borderColor: '#FFD700',
-                backgroundColor: 'rgba(255, 215, 0, 0.15)',
-                borderWidth: 4,
-                tension: 0.4,
-                fill: true,
-                pointRadius: 8,
-                pointBackgroundColor: '#FFD700',
-                pointBorderColor: '#000',
-                pointBorderWidth: 2,
-                pointHoverRadius: 10,
-                pointHoverBackgroundColor: '#FFEC8B',
-                pointHoverBorderColor: '#FFD700',
-                pointHoverBorderWidth: 3
+                borderWidth: 2,
+                borderRadius: 8,
+                barPercentage: 0.6,
+                categoryPercentage: 0.7
             }]
         },
         options: {
@@ -1828,7 +2108,7 @@
                     rtl: true,
                     callbacks: {
                         label: function(context) {
-                            return `قیمت: ${context.parsed.y.toLocaleString()} هزار تومان`;
+                            return `${context.parsed.y} میلیارد تومان`;
                         }
                     }
                 }
@@ -1854,12 +2134,13 @@
                             family: 'Sahel'
                         },
                         callback: function(value) {
-                            return value.toLocaleString() + ' هزار';
+                            return value + ' میلیارد';
                         }
                     },
                     grid: {
                         color: 'rgba(255, 215, 0, 0.1)'
-                    }
+                    },
+                    beginAtZero: true
                 }
             }
         }
@@ -1965,7 +2246,7 @@
         }, observerOptions);
         
         // Observe cards for animation
-        document.querySelectorAll('.card, .growth-stat').forEach(element => {
+        document.querySelectorAll('.card, .coverage-item, .growth-stat').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(50px)';
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -1976,5 +2257,3 @@
 
 </body>
 </html>
-
-
