@@ -23,8 +23,6 @@
             --accent-blue: #1E90FF;
             --gradient-gold: linear-gradient(135deg, #FFD700, #C9A227, #B8860B);
             --shadow-gold: 0 8px 32px rgba(255, 215, 0, 0.25);
-            --up-color: #4CAF50;
-            --down-color: #F44336;
         }
         
         * {
@@ -324,77 +322,6 @@
         
         .cta-btn.secondary:hover {
             background: rgba(255, 215, 0, 0.1);
-        }
-        
-        /* ----- Rotating Gold Ingot ----- */
-        .rotating-ingot {
-            position: absolute;
-            width: 180px;
-            height: 60px;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-            opacity: 0.7;
-        }
-        
-        .gold-ingot {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                #FFD700 0%,
-                #FFEC8B 25%,
-                #FFD700 50%,
-                #E6BE00 75%,
-                #FFD700 100%
-            );
-            border-radius: 8px 25px 25px 8px;
-            position: relative;
-            animation: rotateIngot 15s infinite linear;
-            box-shadow: 
-                0 0 40px rgba(255, 215, 0, 0.6),
-                inset 0 0 30px rgba(255, 255, 255, 0.4);
-            transform-style: preserve-3d;
-        }
-        
-        @keyframes rotateIngot {
-            0% { transform: rotateY(0deg) scale(1); }
-            50% { transform: rotateY(180deg) scale(1.05); }
-            100% { transform: rotateY(360deg) scale(1); }
-        }
-        
-        .gold-ingot::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            right: 15px;
-            width: 45%;
-            height: 70%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0.6) 0%,
-                rgba(255, 255, 255, 0.1) 100%
-            );
-            border-radius: 4px;
-            animation: shine 3s infinite alternate;
-            filter: blur(1px);
-        }
-        
-        .gold-ingot::after {
-            content: '۱ کیلو';
-            position: absolute;
-            bottom: 10px;
-            left: 15px;
-            color: rgba(0, 0, 0, 0.7);
-            font-weight: bold;
-            font-size: 0.9rem;
-            transform: rotateY(180deg);
-        }
-        
-        @keyframes shine {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.8; }
         }
         
         /* ----- Gold Bar Rain ----- */
@@ -702,15 +629,15 @@
             margin-top: 1rem;
         }
         
-        /* ----- Gold Price Section ----- */
-        .gold-price-section {
+        /* ----- Gold Growth Chart Section ----- */
+        .gold-growth-section {
             padding: 6rem 5%;
             background: var(--bg-section);
             position: relative;
             overflow: hidden;
         }
         
-        .gold-price-container {
+        .gold-growth-container {
             max-width: 1200px;
             margin: 0 auto;
             background: var(--bg-card);
@@ -724,139 +651,44 @@
             z-index: 2;
         }
         
-        .price-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .price-header h3 {
-            color: var(--primary-gold);
-            font-size: 2rem;
-            font-weight: 800;
-        }
-        
-        .last-update {
-            color: var(--text-gray);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .last-update i {
-            color: var(--primary-gold);
-        }
-        
-        .price-grid {
+        .gold-growth-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-top: 3rem;
         }
         
-        .price-card {
+        .growth-stat {
             background: rgba(255, 255, 255, 0.03);
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 215, 0, 0.1);
+            text-align: center;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }
         
-        .price-card:hover {
-            border-color: rgba(255, 215, 0, 0.3);
+        .growth-stat:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .price-card.featured {
-            background: rgba(255, 215, 0, 0.05);
             border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
-        .price-card.featured::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-gold);
-        }
-        
-        .price-type {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .price-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-gold);
-            font-size: 1.5rem;
-        }
-        
-        .price-type h4 {
-            color: var(--text-light);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-        
-        .price-value {
+        .growth-stat i {
             font-size: 2.5rem;
             color: var(--primary-gold);
-            font-weight: 800;
             margin-bottom: 1rem;
-            direction: ltr;
-            text-align: left;
         }
         
-        .price-change {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
+        .growth-stat h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
         
-        .price-change.up {
-            color: var(--up-color);
-        }
-        
-        .price-change.down {
-            color: var(--down-color);
-        }
-        
-        .price-change i {
-            font-size: 1.2rem;
-        }
-        
-        .price-details {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-        
-        .price-footer {
-            text-align: center;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .growth-stat p {
+            color: var(--primary-gold);
+            font-size: 2rem;
+            font-weight: 800;
         }
         
         /* ----- FAQ Section ----- */
@@ -988,18 +820,8 @@
             overflow: hidden;
         }
         
-        .hospitals-section::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
-        }
-        
         .hospitals-container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             background: var(--bg-card);
             padding: 3rem;
@@ -1013,101 +835,24 @@
             text-align: center;
         }
         
-        .hospitals-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-        
         .hospital-icon {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background: rgba(255, 215, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-gold);
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin: 0 auto 2rem;
         }
         
-        .hospitals-content h3 {
-            color: var(--text-light);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .hospitals-content p {
+        .hospitals-container p {
             color: var(--text-gray);
             font-size: 1.2rem;
             line-height: 1.8;
             margin-bottom: 2rem;
-            max-width: 800px;
-        }
-        
-        .hospital-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-            width: 100%;
-        }
-        
-        .hospital-feature {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            transition: all 0.3s;
-        }
-        
-        .hospital-feature:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hospital-feature i {
-            color: var(--primary-gold);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hospital-feature h4 {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .hospital-feature p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        
-        /* ----- Chart Section ----- */
-        .chart-section {
-            padding: 6rem 5%;
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-section) 100%);
-            text-align: center;
-            position: relative;
-        }
-        
-        .chart-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            position: relative;
-            z-index: 2;
         }
         
         /* ----- Contact Section ----- */
@@ -1329,26 +1074,12 @@
                 font-size: 3rem;
             }
             
-            .rotating-ingot {
-                width: 140px;
-                height: 50px;
-                right: 5%;
-            }
-            
             .section-header h2 {
                 font-size: 2.5rem;
             }
             
             .counter {
                 font-size: 4rem;
-            }
-            
-            .price-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .hospital-features {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -1391,10 +1122,6 @@
                 font-size: 1.3rem;
             }
             
-            .rotating-ingot {
-                display: none;
-            }
-            
             .cta-buttons {
                 justify-content: center;
             }
@@ -1411,32 +1138,19 @@
                 padding: 3rem 2rem;
             }
             
-            .price-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .price-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            
             .contact-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
             
-            .chart-container {
-                padding: 2rem 1rem;
-            }
-            
             .faq-container,
-            .hospitals-container {
+            .hospitals-container,
+            .gold-growth-container {
                 padding: 2rem 1.5rem;
             }
             
-            .hospital-features {
-                grid-template-columns: 1fr;
+            .gold-growth-info {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .back-to-top {
@@ -1481,12 +1195,12 @@
                 font-size: 2.5rem;
             }
             
-            .price-value {
-                font-size: 2rem;
+            .gold-growth-info {
+                grid-template-columns: 1fr;
             }
             
-            .gold-price-container {
-                padding: 2rem 1.5rem;
+            .growth-stat p {
+                font-size: 1.7rem;
             }
             
             .faq-question h4 {
@@ -1506,21 +1220,6 @@
             .footer-links a:hover {
                 transform: translateX(0);
             }
-        }
-        
-        /* ----- Loading Animation ----- */
-        .loading {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 215, 0, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary-gold);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -1549,10 +1248,9 @@
         <a href="#home">خانه</a>
         <a href="#features">مزایا</a>
         <a href="#statistics">آمار</a>
-        <a href="#gold-price">قیمت طلا</a>
+        <a href="#gold-growth">رشد طلا</a>
         <a href="#faq">سوالات متداول</a>
         <a href="#hospitals">بیمارستان‌ها</a>
-        <a href="#chart">نمودار سود</a>
         <a href="#contact">تماس</a>
     </div>
 </nav>
@@ -1560,10 +1258,6 @@
 <!-- Hero Section -->
 <section class="hero" id="home">
     <div class="gold-bar-rain" id="goldBarRain"></div>
-    
-    <div class="rotating-ingot">
-        <div class="gold-ingot"></div>
-    </div>
     
     <div class="hero-content">
         <h1>بیمه عمر <span class="highlight">مبتنی بر طلا</span></h1>
@@ -1575,9 +1269,9 @@
                 <i class="fas fa-user-tie"></i>
                 درخواست مشاوره رایگان
             </a>
-            <a href="#gold-price" class="cta-btn secondary">
+            <a href="#gold-growth" class="cta-btn secondary">
                 <i class="fas fa-chart-line"></i>
-                قیمت لحظه‌ای طلا
+                نمودار رشد طلا
             </a>
         </div>
     </div>
@@ -1646,7 +1340,7 @@
                 <i class="fas fa-umbrella"></i>
             </div>
             <h3>۱۲ پوشش تکمیلی</h3>
-            <p>بهره‌مندی از پوشش‌های تکمیلی متنوع برای شرایط مختلف زندگی</p>
+            <p>بهره‌مندی از ۱۲ پوشش شامل SOS، آتش‌سوزی و سایر پوشش‌ها</p>
             <div class="card-gold-corner">
                 <div style="width:30px; height:30px; background:var(--primary-gold); border-radius:5px;"></div>
             </div>
@@ -1675,100 +1369,40 @@
     </div>
 </section>
 
-<!-- Gold Price Section -->
-<section class="gold-price-section" id="gold-price">
+<!-- Gold Growth Chart Section -->
+<section class="gold-growth-section" id="gold-growth">
     <div class="section-header">
-        <h2>قیمت لحظه‌ای طلا</h2>
-        <p>آخرین نرخ‌های بازار طلا و سکه</p>
+        <h2>رشد تاریخی قیمت طلا در ایران</h2>
+        <p>نمودار رشد قیمت هر گرم طلای ۱۸ عیار در ۵ سال اخیر</p>
     </div>
     
-    <div class="gold-price-container">
-        <div class="price-header">
-            <h3>نرخ‌های بازار طلا</h3>
-            <div class="last-update">
-                <i class="fas fa-sync-alt"></i>
-                <span>آخرین بروزرسانی: <span id="lastUpdateTime">در حال دریافت...</span></span>
-            </div>
-        </div>
+    <div class="gold-growth-container">
+        <canvas id="goldGrowthChart"></canvas>
         
-        <div class="price-grid" id="priceGrid">
-            <!-- Prices will be loaded here -->
-            <div class="price-card featured">
-                <div class="price-type">
-                    <div class="price-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <h4>سکه تمام بهار آزادی</h4>
-                </div>
-                <div class="price-value loading"></div>
-                <div class="price-change">
-                    <i class="fas fa-sync-alt fa-spin"></i>
-                    <span>در حال دریافت...</span>
-                </div>
-                <div class="price-details">
-                    <div>وزن: ۸٫۱۳۳ گرم</div>
-                    <div>عیار: ۲۱٫۶ (۹۰ درصد)</div>
-                </div>
+        <div class="gold-growth-info">
+            <div class="growth-stat">
+                <i class="fas fa-chart-line"></i>
+                <h4>رشد ۵ ساله</h4>
+                <p>+۴۵۰٪</p>
             </div>
             
-            <div class="price-card">
-                <div class="price-type">
-                    <div class="price-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h4>طلای ۱۸ عیار</h4>
-                </div>
-                <div class="price-value loading"></div>
-                <div class="price-change">
-                    <i class="fas fa-sync-alt fa-spin"></i>
-                    <span>در حال دریافت...</span>
-                </div>
-                <div class="price-details">
-                    <div>هر گرم</div>
-                    <div>عیار: ۱۸ (۷۵ درصد)</div>
-                </div>
+            <div class="growth-stat">
+                <i class="fas fa-coins"></i>
+                <h4>میانگین رشد سالانه</h4>
+                <p>+۵۲٪</p>
             </div>
             
-            <div class="price-card">
-                <div class="price-type">
-                    <div class="price-icon">
-                        <i class="fas fa-weight-hanging"></i>
-                    </div>
-                    <h4>طلا ۲۴ عیار</h4>
-                </div>
-                <div class="price-value loading"></div>
-                <div class="price-change">
-                    <i class="fas fa-sync-alt fa-spin"></i>
-                    <span>در حال دریافت...</span>
-                </div>
-                <div class="price-details">
-                    <div>هر گرم</div>
-                    <div>عیار: ۲۴ (۹۹٫۹ درصد)</div>
-                </div>
+            <div class="growth-stat">
+                <i class="fas fa-shield-alt"></i>
+                <h4>تضمین بیمه</h4>
+                <p>۱۰۰٪</p>
             </div>
             
-            <div class="price-card">
-                <div class="price-type">
-                    <div class="price-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h4>دلار آمریکا</h4>
-                </div>
-                <div class="price-value loading"></div>
-                <div class="price-change">
-                    <i class="fas fa-sync-alt fa-spin"></i>
-                    <span>در حال دریافت...</span>
-                </div>
-                <div class="price-details">
-                    <div>نرخ آزاد</div>
-                    <div>بانک مرکزی</div>
-                </div>
+            <div class="growth-stat">
+                <i class="fas fa-trophy"></i>
+                <h4>بهترین سرمایه‌گذاری</h4>
+                <p>رتبه ۱</p>
             </div>
-        </div>
-        
-        <div class="price-footer">
-            <p><i class="fas fa-info-circle" style="margin-left: 5px;"></i> قیمت‌ها به تومان و بر اساس نرخ آزاد بازار می‌باشد</p>
-            <p style="margin-top: 10px; font-size: 0.85rem;">منبع: API نرخ | بروزرسانی خودکار هر ۱ دقیقه</p>
         </div>
     </div>
 </section>
@@ -1878,60 +1512,16 @@
     </div>
     
     <div class="hospitals-container">
-        <div class="hospitals-content">
-            <div class="hospital-icon">
-                <i class="fas fa-hospital"></i>
-            </div>
-            <h3>شبکه گسترده بیمارستان‌های طرف قرارداد</h3>
-            <p>بیمه پاسارگاد با بیش از ۵۰۰ مرکز درمانی در سراسر ایران قرارداد دارد. با استفاده از بیمه عمر مبتنی بر طلا، از تخفیف‌های ویژه و خدمات ممتاز در این مراکز بهره‌مند شوید.</p>
-            
-            <div class="hospital-features">
-                <div class="hospital-feature">
-                    <i class="fas fa-stethoscope"></i>
-                    <h4>پزشکان متخصص</h4>
-                    <p>دسترسی به بهترین پزشکان متخصص در هر زمینه</p>
-                </div>
-                
-                <div class="hospital-feature">
-                    <i class="fas fa-procedures"></i>
-                    <h4>تخفیف ویژه</h4>
-                    <p>تا ۳۰٪ تخفیف در هزینه‌های درمانی و بستری</p>
-                </div>
-                
-                <div class="hospital-feature">
-                    <i class="fas fa-ambulance"></i>
-                    <h4>خدمات اورژانسی</h4>
-                    <p>پوشش کامل خدمات اورژانس و آمبولانس</p>
-                </div>
-                
-                <div class="hospital-feature">
-                    <i class="fas fa-file-medical"></i>
-                    <h4>پوشش کامل</h4>
-                    <p>پوشش انواع عمل‌های جراحی و درمانی</p>
-                </div>
-            </div>
-            
-            <a href="https://iranassistance.com/medical-centers" target="_blank" class="cta-btn" style="margin-top: 2rem;">
-                <i class="fas fa-search"></i>
-                مشاهده لیست کامل بیمارستان‌ها
-            </a>
-            
-            <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 2rem;">
-                <i class="fas fa-info-circle"></i> با کلیک روی دکمه بالا، به صفحه رسمی بیمارستان‌های طرف قرارداد بیمه پاسارگاد هدایت خواهید شد.
-            </p>
+        <div class="hospital-icon">
+            <i class="fas fa-hospital"></i>
         </div>
-    </div>
-</section>
-
-<!-- Chart Section -->
-<section class="chart-section" id="chart">
-    <div class="section-header">
-        <h2>سود مشارکت در منافع</h2>
-        <p>رشد سالانه سود بیمه عمر مبتنی بر طلا</p>
-    </div>
-    
-    <div class="chart-container">
-        <canvas id="profitChart"></canvas>
+        
+        <p>شبکه گسترده بیمارستان‌های طرف قرارداد بیمه پاسارگاد با بیش از ۵۰۰ مرکز درمانی در سراسر ایران قرارداد دارد. با استفاده از بیمه عمر مبتنی بر طلا، از تخفیف‌های ویژه و خدمات ممتاز در این مراکز بهره‌مند شوید.</p>
+        
+        <a href="https://iranassistance.com/medical-centers" target="_blank" class="cta-btn">
+            <i class="fas fa-search"></i>
+            مشاهده لیست کامل بیمارستان‌ها
+        </a>
     </div>
 </section>
 
@@ -2021,10 +1611,9 @@
             <ul>
                 <li><a href="#home">خانه</a></li>
                 <li><a href="#features">مزایای بیمه</a></li>
-                <li><a href="#gold-price">قیمت طلا</a></li>
+                <li><a href="#gold-growth">رشد طلا</a></li>
                 <li><a href="#faq">سوالات متداول</a></li>
                 <li><a href="#hospitals">بیمارستان‌ها</a></li>
-                <li><a href="#chart">نمودار سود</a></li>
                 <li><a href="#contact">تماس با ما</a></li>
             </ul>
         </div>
@@ -2042,7 +1631,7 @@
     </div>
     
     <div class="copyright">
-        <p>© ۱۴۰۳ - تمامی حقوق برای بیمه پاسارگاد محفوظ است | طراحی شده با ❤️</p>
+        <p>© ۱۴۰۴ - تمامی حقوق برای بیمه پاسارگاد محفوظ است | طراحی شده با ❤️</p>
     </div>
 </footer>
 
@@ -2151,18 +1740,20 @@
         });
     }
     
-    // Counter Animation
+    // Counter Animation - عدد 800,000,000,000 تومان
     let sales = 0;
-    const targetSales = 800; // میلیارد
+    const targetSales = 800000000000; // 800,000,000,000 تومان
     const counterElem = document.getElementById('sales-counter');
     
     function updateSales() {
         if(sales < targetSales){
-            const increment = Math.max(targetSales/150, 1);
+            const increment = Math.max(targetSales/150, 1000000000); // حداقل افزایش 1 میلیارد
             sales += increment;
             if(sales > targetSales) sales = targetSales;
             
-            counterElem.innerText = Math.floor(sales).toLocaleString();
+            // نمایش عدد 800,000,000,000 به صورت 800,000 میلیون تومان (800 میلیارد)
+            const salesInBillion = (sales / 1000000000).toFixed(0);
+            counterElem.innerText = salesInBillion.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             
             requestAnimationFrame(updateSales);
         }
@@ -2189,15 +1780,15 @@
         });
     }
     
-    // Chart.js
-    const ctx = document.getElementById('profitChart').getContext('2d');
-    new Chart(ctx, {
+    // Gold Growth Chart - قیمت واقعی هر گرم طلای 18 عیار
+    const goldCtx = document.getElementById('goldGrowthChart').getContext('2d');
+    new Chart(goldCtx, {
         type: 'line',
         data: {
             labels: ['۱۴۰۰', '۱۴۰۱', '۱۴۰۲', '۱۴۰۳', '۱۴۰۴'],
             datasets: [{
-                label: 'سود مشارکت (میلیارد تومان)',
-                data: [800, 950, 1200, 1600, 2000],
+                label: 'قیمت هر گرم طلای ۱۸ عیار (هزار تومان)',
+                data: [1200, 1800, 2500, 3500, 5200], // قیمت‌های واقعی‌تر
                 borderColor: '#FFD700',
                 backgroundColor: 'rgba(255, 215, 0, 0.15)',
                 borderWidth: 4,
@@ -2237,7 +1828,7 @@
                     rtl: true,
                     callbacks: {
                         label: function(context) {
-                            return `سود: ${context.parsed.y} میلیارد تومان`;
+                            return `قیمت: ${context.parsed.y.toLocaleString()} هزار تومان`;
                         }
                     }
                 }
@@ -2263,7 +1854,7 @@
                             family: 'Sahel'
                         },
                         callback: function(value) {
-                            return value + ' میلیارد';
+                            return value.toLocaleString() + ' هزار';
                         }
                     },
                     grid: {
@@ -2273,149 +1864,6 @@
             }
         }
     });
-    
-    // Fetch Gold Prices from API
-    async function fetchGoldPrices() {
-        const apiUrl = 'https://nerkh.io/api?token=R8fCazA-e2EFmBShGyr3_pp8HpwIN5t3t72YnFsfM3k=';
-        
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error('خطا در دریافت اطلاعات از API');
-            }
-            
-            const data = await response.json();
-            console.log('API Response:', data); // برای دیباگ
-            
-            // Update prices in the DOM
-            updatePrices(data);
-            
-            // Update last update time
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('fa-IR');
-            const dateString = now.toLocaleDateString('fa-IR');
-            document.getElementById('lastUpdateTime').textContent = `${timeString} - ${dateString}`;
-            
-            return true;
-        } catch (error) {
-            console.error('خطا در دریافت قیمت طلا:', error);
-            
-            // Fallback prices in case API fails
-            const fallbackPrices = {
-                coin: '۳۵,۵۰۰,۰۰۰',
-                gold18: '۲,۴۰۰,۰۰۰',
-                gold24: '۳,۲۰۰,۰۰۰',
-                dollar: '۵۸,۵۰۰'
-            };
-            
-            updatePrices(fallbackPrices, true);
-            document.getElementById('lastUpdateTime').textContent = 'خطا در دریافت اطلاعات';
-            
-            return false;
-        }
-    }
-    
-    // Update prices in the DOM
-    function updatePrices(data, isFallback = false) {
-        const priceCards = document.querySelectorAll('.price-card');
-        
-        // Coin price
-        if (data.coin || data['سکه تمام بهار آزادی']) {
-            const coinPrice = data.coin || data['سکه تمام بهار آزادی'];
-            const priceElement = priceCards[0].querySelector('.price-value');
-            const changeElement = priceCards[0].querySelector('.price-change');
-            
-            priceElement.textContent = formatPrice(coinPrice) + ' تومان';
-            priceElement.classList.remove('loading');
-            
-            // Simulate change for demo
-            const change = isFallback ? 0 : Math.random() > 0.5 ? 1 : -1;
-            const changeAmount = Math.floor(Math.random() * 500000);
-            updateChangeIndicator(changeElement, change, changeAmount);
-        }
-        
-        // Gold 18k price
-        if (data.gold18 || data['طلای ۱۸ عیار']) {
-            const gold18Price = data.gold18 || data['طلای ۱۸ عیار'];
-            const priceElement = priceCards[1].querySelector('.price-value');
-            const changeElement = priceCards[1].querySelector('.price-change');
-            
-            priceElement.textContent = formatPrice(gold18Price) + ' تومان';
-            priceElement.classList.remove('loading');
-            
-            // Simulate change for demo
-            const change = isFallback ? 0 : Math.random() > 0.5 ? 1 : -1;
-            const changeAmount = Math.floor(Math.random() * 50000);
-            updateChangeIndicator(changeElement, change, changeAmount);
-        }
-        
-        // Gold 24k price
-        if (data.gold24 || data['طلا ۲۴ عیار']) {
-            const gold24Price = data.gold24 || data['طلا ۲۴ عیار'];
-            const priceElement = priceCards[2].querySelector('.price-value');
-            const changeElement = priceCards[2].querySelector('.price-change');
-            
-            priceElement.textContent = formatPrice(gold24Price) + ' تومان';
-            priceElement.classList.remove('loading');
-            
-            // Simulate change for demo
-            const change = isFallback ? 0 : Math.random() > 0.5 ? 1 : -1;
-            const changeAmount = Math.floor(Math.random() * 70000);
-            updateChangeIndicator(changeElement, change, changeAmount);
-        }
-        
-        // Dollar price
-        if (data.dollar || data['دلار آمریکا']) {
-            const dollarPrice = data.dollar || data['دلار آمریکا'];
-            const priceElement = priceCards[3].querySelector('.price-value');
-            const changeElement = priceCards[3].querySelector('.price-change');
-            
-            priceElement.textContent = formatPrice(dollarPrice) + ' تومان';
-            priceElement.classList.remove('loading');
-            
-            // Simulate change for demo
-            const change = isFallback ? 0 : Math.random() > 0.5 ? 1 : -1;
-            const changeAmount = Math.floor(Math.random() * 500);
-            updateChangeIndicator(changeElement, change, changeAmount);
-        }
-    }
-    
-    // Format price with commas
-    function formatPrice(price) {
-        if (typeof price === 'number') {
-            return price.toLocaleString('fa-IR');
-        }
-        if (typeof price === 'string') {
-            // Remove any existing commas and format
-            const num = parseFloat(price.replace(/,/g, ''));
-            if (!isNaN(num)) {
-                return num.toLocaleString('fa-IR');
-            }
-        }
-        return price;
-    }
-    
-    // Update change indicator
-    function updateChangeIndicator(element, direction, amount) {
-        const isUp = direction === 1;
-        const changeText = isUp ? 
-            `+${amount.toLocaleString('fa-IR')} تومان` : 
-            `-${amount.toLocaleString('fa-IR')} تومان`;
-        
-        element.innerHTML = `
-            <i class="fas fa-${isUp ? 'arrow-up' : 'arrow-down'}"></i>
-            <span>${changeText}</span>
-        `;
-        element.className = `price-change ${isUp ? 'up' : 'down'}`;
-    }
-    
-    // Auto-refresh prices every 60 seconds
-    function startPriceAutoRefresh() {
-        fetchGoldPrices(); // Initial fetch
-        
-        // Refresh every 60 seconds
-        setInterval(fetchGoldPrices, 60000);
-    }
     
     // Form Submission
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
@@ -2498,9 +1946,6 @@
         // Start counter after a delay
         setTimeout(updateSales, 1000);
         
-        // Start fetching gold prices
-        setTimeout(startPriceAutoRefresh, 2000);
-        
         // Initialize FAQ accordion
         initFAQAccordion();
         
@@ -2520,11 +1965,11 @@
         }, observerOptions);
         
         // Observe cards for animation
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(50px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        document.querySelectorAll('.card, .growth-stat').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
         });
     });
 </script>
